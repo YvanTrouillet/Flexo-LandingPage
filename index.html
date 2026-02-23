@@ -1,0 +1,1975 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Flexo — Le seul outil de facturation qui va au tribunal pour récupérer ton
+      argent
+    </title>
+    <meta
+      name="description"
+      content="Flexo automatise tes factures, relances et escalades juridiques. Finis les impayés. Rejoins la waitlist."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===================== RESET & BASE ===================== */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        color: #12101c;
+        background: #ffffff;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      /* ===================== VARIABLES ===================== */
+      :root {
+        --primary: #7c3aed;
+        --primary-hover: #6d28d9;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --error: #ef4444;
+        --text: #12101c;
+        --text-secondary: #6b7280;
+        --bg-light: #f5f3ff;
+        --bg-white: #ffffff;
+        --border: #e5e7eb;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.1);
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+      }
+
+      /* ===================== TYPOGRAPHY ===================== */
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        line-height: 1.15;
+      }
+      h1 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+      }
+      h2 {
+        font-size: clamp(1.6rem, 4vw, 2.5rem);
+      }
+      h3 {
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      }
+      p {
+        color: var(--text-secondary);
+      }
+
+      /* ===================== UTILITY ===================== */
+      .container {
+        width: 100%;
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .section {
+        padding: 80px 0;
+      }
+      @media (max-width: 768px) {
+        .section {
+          padding: 56px 0;
+        }
+      }
+      .text-center {
+        text-align: center;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        padding: 14px 28px;
+        border-radius: var(--radius-sm);
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--primary-hover);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+      }
+      .btn-outline:hover {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      /* ===================== ANIMATIONS ===================== */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ===================== NAVBAR ===================== */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        transition: box-shadow 0.3s ease;
+      }
+      .navbar.scrolled {
+        box-shadow: var(--shadow-sm);
+      }
+      .navbar .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+      }
+      .logo {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--primary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--primary);
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+      .navbar .btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+
+      /* ===================== HERO ===================== */
+      .hero {
+        padding-top: 140px;
+        padding-bottom: 80px;
+        background: linear-gradient(
+          180deg,
+          var(--bg-light) 0%,
+          var(--bg-white) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(124, 58, 237, 0.08) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .hero-content {
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #fff;
+        border: 1px solid var(--border);
+        padding: 8px 18px;
+        border-radius: 100px;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-bottom: 24px;
+        box-shadow: var(--shadow-sm);
+      }
+      .hero h1 {
+        margin-bottom: 20px;
+        font-size: 50px;
+        font-weight: 900;
+      }
+      .hero h1 span {
+        color: var(--primary);
+      }
+      .hero-sub {
+        font-size: 1.15rem;
+        color: var(--text-secondary);
+        margin-bottom: 36px;
+        max-width: 560px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-form {
+        display: flex;
+        gap: 12px;
+        max-width: 480px;
+        margin: 0 auto 16px;
+      }
+      .hero-form input[type="email"] {
+        flex: 1;
+        padding: 14px 18px;
+        border: 2px solid var(--border);
+        border-radius: var(--radius-sm);
+        font-size: 1rem;
+        font-family: "Inter", sans-serif;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .hero-form input[type="email"]:focus {
+        border-color: var(--primary);
+      }
+      .hero-form input[type="email"]::placeholder {
+        color: #9ca3af;
+      }
+      .hero-form .btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .form-note {
+        font-size: 0.82rem;
+        color: var(--text-secondary);
+        margin-bottom: 12px;
+      }
+      .waitlist-count {
+        font-size: 0.9rem;
+        color: var(--primary);
+        font-weight: 600;
+        margin-top: 8px;
+      }
+      .waitlist-count span {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .form-success {
+        display: none;
+        padding: 16px 20px;
+        background: #ecfdf5;
+        border: 1px solid #a7f3d0;
+        border-radius: var(--radius-sm);
+        color: #065f46;
+        font-weight: 500;
+        font-size: 0.95rem;
+        max-width: 480px;
+        margin: 0 auto 16px;
+      }
+      .form-error-msg {
+        display: none;
+        font-size: 0.82rem;
+        color: var(--error);
+        margin-top: -8px;
+        margin-bottom: 8px;
+      }
+      @media (max-width: 520px) {
+        .hero-form {
+          flex-direction: column;
+        }
+        .hero-form .btn {
+          width: 100%;
+        }
+      }
+
+      /* ===================== DASHBOARD MOCKUP ===================== */
+      .mockup-wrapper {
+        margin-top: 56px;
+        perspective: 1200px;
+      }
+      .mockup {
+        max-width: 720px;
+        margin: 0 auto;
+        background: #fff;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        border: 1px solid var(--border);
+        overflow: hidden;
+        transform: rotateX(4deg);
+        transition: transform 0.5s ease;
+      }
+      .mockup:hover {
+        transform: rotateX(0deg);
+      }
+      .mockup-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 16px;
+        background: #fafafa;
+        border-bottom: 1px solid var(--border);
+      }
+      .mockup-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .mockup-dot:nth-child(1) {
+        background: #ef4444;
+      }
+      .mockup-dot:nth-child(2) {
+        background: #f59e0b;
+      }
+      .mockup-dot:nth-child(3) {
+        background: #10b981;
+      }
+      .mockup-body {
+        padding: 24px;
+      }
+      .mockup-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .mockup-title {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--text);
+      }
+      .mockup-subtitle {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+      .mockup-stats {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .mockup-stat {
+        padding: 10px 16px;
+        background: var(--bg-light);
+        border-radius: var(--radius-sm);
+        text-align: center;
+      }
+      .mockup-stat-value {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+      .mockup-stat-value.green {
+        color: var(--success);
+      }
+      .mockup-stat-value.amber {
+        color: var(--warning);
+      }
+      .mockup-stat-value.red {
+        color: var(--error);
+      }
+      .mockup-stat-label {
+        font-size: 0.65rem;
+        color: var(--text-secondary);
+        margin-top: 2px;
+      }
+      .mockup-table {
+        width: 100%;
+        margin-top: 20px;
+      }
+      .mockup-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.8rem;
+        gap: 8px;
+      }
+      .mockup-row:last-child {
+        border-bottom: none;
+      }
+      .mockup-client {
+        font-weight: 500;
+        color: var(--text);
+        min-width: 100px;
+      }
+      .mockup-amount {
+        font-weight: 600;
+        color: var(--text);
+      }
+      .mockup-status {
+        padding: 3px 10px;
+        border-radius: 100px;
+        font-size: 0.7rem;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .status-paid {
+        background: #ecfdf5;
+        color: #065f46;
+      }
+      .status-pending {
+        background: #fffbeb;
+        color: #92400e;
+      }
+      .status-overdue {
+        background: #fef2f2;
+        color: #991b1b;
+      }
+      .status-legal {
+        background: #f5f3ff;
+        color: #5b21b6;
+      }
+      @media (max-width: 520px) {
+        .mockup-stats {
+          gap: 8px;
+        }
+        .mockup-stat {
+          flex: 1;
+          min-width: 60px;
+          padding: 8px 10px;
+        }
+        .mockup-stat-value {
+          font-size: 0.9rem;
+        }
+        .mockup-row {
+          font-size: 0.7rem;
+        }
+      }
+
+      /* ===================== PROBLÈME ===================== */
+      .problem {
+        background: var(--text);
+        color: #fff;
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      .problem::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        left: -100px;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(124, 58, 237, 0.15) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .problem h2 {
+        color: #fff;
+        margin-bottom: 48px;
+      }
+      .problem h2 span {
+        color: var(--error);
+      }
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        margin-bottom: 48px;
+      }
+      @media (max-width: 768px) {
+        .stats-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+      }
+      .stat-card {
+        text-align: center;
+        padding: 32px 24px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--radius-lg);
+      }
+      .stat-number {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        font-size: clamp(2.2rem, 5vw, 3rem);
+        margin-bottom: 8px;
+      }
+      .stat-number.red {
+        color: var(--error);
+      }
+      .stat-number.amber {
+        color: var(--warning);
+      }
+      .stat-number.purple {
+        color: var(--primary);
+      }
+      .stat-label {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+      }
+      .problem-text {
+        max-width: 640px;
+        margin: 0 auto;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 1.1rem;
+        line-height: 1.7;
+      }
+
+      /* ===================== SOLUTION ===================== */
+      .solution {
+        background: var(--bg-white);
+      }
+      .solution h2 {
+        margin-bottom: 16px;
+      }
+      .solution-sub {
+        color: var(--text-secondary);
+        margin-bottom: 56px;
+        font-size: 1.05rem;
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        position: relative;
+      }
+      .steps::before {
+        content: "";
+        position: absolute;
+        top: 52px;
+        left: 16.66%;
+        right: 16.66%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--success));
+        border-radius: 2px;
+      }
+      @media (max-width: 768px) {
+        .steps {
+          grid-template-columns: 1fr;
+          max-width: 400px;
+          margin: 0 auto;
+        }
+        .steps::before {
+          display: none;
+        }
+      }
+      .step {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        padding: 24px;
+      }
+      .step-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        background: var(--bg-light);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid var(--primary);
+      }
+      .step-icon svg {
+        width: 36px;
+        height: 36px;
+      }
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: #fff;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+      }
+      .step h3 {
+        margin-bottom: 8px;
+      }
+      .step p {
+        font-size: 0.9rem;
+      }
+
+      /* ===================== FONCTIONNALITÉS ===================== */
+      .features {
+        background: var(--bg-light);
+      }
+      .features h2 {
+        margin-bottom: 48px;
+      }
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      @media (max-width: 900px) {
+        .features-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 560px) {
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .feature-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 28px 24px;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .feature-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 16px;
+        font-size: 1.3rem;
+      }
+      .feature-icon.purple {
+        background: #ede9fe;
+        color: var(--primary);
+      }
+      .feature-icon.green {
+        background: #ecfdf5;
+        color: var(--success);
+      }
+      .feature-icon.amber {
+        background: #fffbeb;
+        color: var(--warning);
+      }
+      .feature-icon.red {
+        background: #fef2f2;
+        color: var(--error);
+      }
+      .feature-card h3 {
+        font-size: 1.05rem;
+        margin-bottom: 8px;
+      }
+      .feature-card p {
+        font-size: 0.9rem;
+      }
+
+      /* ===================== PRICING ===================== */
+      .pricing {
+        background: var(--bg-white);
+      }
+      .pricing h2 {
+        margin-bottom: 12px;
+      }
+      .pricing-sub {
+        color: var(--text-secondary);
+        margin-bottom: 48px;
+        font-size: 1rem;
+      }
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        align-items: start;
+      }
+      @media (max-width: 800px) {
+        .pricing-grid {
+          grid-template-columns: 1fr;
+          max-width: 420px;
+          margin: 0 auto;
+        }
+      }
+      .pricing-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 36px 28px;
+        text-align: center;
+        position: relative;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .pricing-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+      }
+      .pricing-card.popular {
+        border: 2px solid var(--primary);
+        box-shadow: var(--shadow-lg);
+        transform: scale(1.04);
+      }
+      .pricing-card.popular:hover {
+        transform: scale(1.04) translateY(-4px);
+      }
+      .popular-badge {
+        position: absolute;
+        top: -13px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--primary);
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 4px 16px;
+        border-radius: 100px;
+        white-space: nowrap;
+      }
+      .pricing-name {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .pricing-price {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        font-size: 2.8rem;
+        margin-bottom: 4px;
+      }
+      .pricing-price span {
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--text-secondary);
+      }
+      .pricing-period {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+        margin-bottom: 24px;
+      }
+      .pricing-features {
+        list-style: none;
+        text-align: left;
+        margin-bottom: 28px;
+      }
+      .pricing-features li {
+        padding: 8px 0;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .pricing-features li::before {
+        content: "✓";
+        color: var(--primary);
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .pricing-card .btn {
+        width: 100%;
+      }
+      .pricing-lock {
+        margin-top: 32px;
+        font-size: 0.85rem;
+        color: var(--primary);
+        font-weight: 500;
+      }
+
+      /* ===================== SOCIAL PROOF ===================== */
+      .trust {
+        background: var(--bg-light);
+      }
+      .trust h2 {
+        margin-bottom: 48px;
+      }
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-bottom: 56px;
+      }
+      @media (max-width: 768px) {
+        .trust-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .trust-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 28px 24px;
+        text-align: center;
+      }
+      .trust-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        margin: 0 auto 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        background: var(--bg-light);
+      }
+      .trust-card h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+      .trust-card p {
+        font-size: 0.88rem;
+      }
+      .testimonials {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      @media (max-width: 768px) {
+        .testimonials {
+          grid-template-columns: 1fr;
+        }
+      }
+      .testimonial {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 28px 24px;
+        position: relative;
+      }
+      .testimonial::before {
+        content: '"';
+        position: absolute;
+        top: 12px;
+        left: 20px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 3rem;
+        color: var(--primary);
+        opacity: 0.2;
+        line-height: 1;
+      }
+      .testimonial p {
+        font-size: 0.92rem;
+        color: var(--text);
+        font-style: italic;
+        margin-bottom: 16px;
+        line-height: 1.6;
+      }
+      .testimonial-author {
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--primary);
+      }
+      .testimonial-role {
+        font-size: 0.78rem;
+        color: var(--text-secondary);
+      }
+
+      /* ===================== FAQ ===================== */
+      .faq {
+        background: var(--bg-white);
+      }
+      .faq h2 {
+        margin-bottom: 48px;
+      }
+      .faq-list {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .faq-item {
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        margin-bottom: 12px;
+        overflow: hidden;
+        transition: box-shadow 0.3s ease;
+      }
+      .faq-item:hover {
+        box-shadow: var(--shadow-sm);
+      }
+      .faq-question {
+        width: 100%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 20px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--text);
+        text-align: left;
+        gap: 16px;
+      }
+      .faq-question:hover {
+        color: var(--primary);
+      }
+      .faq-chevron {
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+        color: var(--text-secondary);
+      }
+      .faq-item.open .faq-chevron {
+        transform: rotate(180deg);
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.4s ease,
+          padding 0.3s ease;
+      }
+      .faq-item.open .faq-answer {
+        max-height: 400px;
+      }
+      .faq-answer-inner {
+        padding: 0 24px 20px;
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+
+      /* ===================== CTA FINAL ===================== */
+      .cta-final {
+        background: linear-gradient(135deg, var(--primary) 0%, #5b21b6 100%);
+        color: #fff;
+        text-align: center;
+      }
+      .cta-final h2 {
+        color: #fff;
+        margin-bottom: 16px;
+      }
+      .cta-final .cta-sub {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 36px;
+        font-size: 1.05rem;
+      }
+      .cta-final .hero-form input[type="email"] {
+        border-color: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+      }
+      .cta-final .hero-form input[type="email"]::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .cta-final .hero-form input[type="email"]:focus {
+        border-color: #fff;
+      }
+      .cta-final .btn-primary {
+        background: #fff;
+        color: var(--primary);
+      }
+      .cta-final .btn-primary:hover {
+        background: #f5f3ff;
+      }
+      .cta-final .form-note {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .cta-final .waitlist-count {
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .cta-final .form-success {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        color: #fff;
+      }
+      .cta-final .form-error-msg {
+        color: #fca5a5;
+      }
+
+      /* ===================== FOOTER ===================== */
+      .footer {
+        background: var(--text);
+        color: rgba(255, 255, 255, 0.5);
+        padding: 40px 0;
+        text-align: center;
+      }
+      .footer .logo {
+        color: #fff;
+        justify-content: center;
+        margin-bottom: 16px;
+      }
+      .footer .logo-icon {
+        background: var(--primary);
+      }
+      .footer-copy {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+      }
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.5);
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- =================== NAVBAR =================== -->
+    <nav class="navbar" id="navbar">
+      <div class="container">
+        <a href="#" class="logo">
+          <div class="logo-icon">F</div>
+          Flexo
+        </a>
+        <a href="#waitlist" class="btn btn-primary">Rejoindre la waitlist</a>
+      </div>
+    </nav>
+
+    <!-- =================== HERO =================== -->
+    <section class="hero section" id="hero">
+      <div class="container hero-content">
+        <div class="badge">
+          🚀 Bientôt disponible — Rejoins les 500 premiers
+        </div>
+        <h1>
+          Tes factures impayées&nbsp;?<br /><span>Flexo s'en occupe.</span>
+        </h1>
+        <p class="hero-sub">
+          Le seul outil de facturation qui automatise tes relances et va
+          jusqu'au tribunal pour récupérer ton argent. Conçu pour les freelances
+          créatifs.
+        </p>
+
+        <form class="hero-form" id="heroForm" novalidate>
+          <input
+            type="email"
+            placeholder="ton@email.com"
+            aria-label="Adresse email"
+            required
+          />
+          <button type="submit" class="btn btn-primary">
+            Rejoindre la waitlist
+          </button>
+        </form>
+        <div class="form-error-msg" id="heroError">
+          Merci d'entrer une adresse email valide.
+        </div>
+        <div class="form-success" id="heroSuccess">
+          🎉 Tu es sur la liste ! On te contacte en avant-première.
+        </div>
+        <p class="form-note">
+          Gratuit · Sans spam · Tu seras notifié en avant-première
+        </p>
+        <p class="waitlist-count">
+          <span
+            >🔥 <strong class="counter">247</strong> freelances déjà
+            inscrits</span
+          >
+        </p>
+
+        <!-- Dashboard Mockup -->
+        <div class="mockup-wrapper reveal">
+          <div class="mockup">
+            <div class="mockup-bar">
+              <div class="mockup-dot"></div>
+              <div class="mockup-dot"></div>
+              <div class="mockup-dot"></div>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-header">
+                <div>
+                  <div class="mockup-title">Dashboard — Février 2026</div>
+                  <div class="mockup-subtitle">
+                    Vue d'ensemble de ta facturation
+                  </div>
+                </div>
+                <div class="mockup-stats">
+                  <div class="mockup-stat">
+                    <div class="mockup-stat-value green">4 200 €</div>
+                    <div class="mockup-stat-label">Payées</div>
+                  </div>
+                  <div class="mockup-stat">
+                    <div class="mockup-stat-value amber">1 800 €</div>
+                    <div class="mockup-stat-label">En attente</div>
+                  </div>
+                  <div class="mockup-stat">
+                    <div class="mockup-stat-value red">950 €</div>
+                    <div class="mockup-stat-label">Impayées</div>
+                  </div>
+                </div>
+              </div>
+              <div class="mockup-table">
+                <div class="mockup-row">
+                  <span class="mockup-client">Studio Brio</span>
+                  <span class="mockup-amount">1 400 €</span>
+                  <span class="mockup-status status-paid">Payée</span>
+                </div>
+                <div class="mockup-row">
+                  <span class="mockup-client">Agence Nova</span>
+                  <span class="mockup-amount">2 800 €</span>
+                  <span class="mockup-status status-paid">Payée</span>
+                </div>
+                <div class="mockup-row">
+                  <span class="mockup-client">Marie L.</span>
+                  <span class="mockup-amount">1 800 €</span>
+                  <span class="mockup-status status-pending">Relance J+7</span>
+                </div>
+                <div class="mockup-row">
+                  <span class="mockup-client">PixelCraft</span>
+                  <span class="mockup-amount">950 €</span>
+                  <span class="mockup-status status-legal"
+                    >Mise en demeure</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== PROBLÈME =================== -->
+    <section class="problem section" id="probleme">
+      <div class="container text-center">
+        <h2 class="reveal">
+          Les freelances perdent <span>6 000 € par an</span><br />en factures
+          impayées
+        </h2>
+        <div class="stats-grid">
+          <div class="stat-card reveal">
+            <div class="stat-number red">12 %</div>
+            <div class="stat-label">du CA perdu en impayés en moyenne</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-number amber">15-20h</div>
+            <div class="stat-label">par mois perdues en relances manuelles</div>
+          </div>
+          <div class="stat-card reveal">
+            <div class="stat-number purple">1 sur 3</div>
+            <div class="stat-label">freelance a déjà abandonné une créance</div>
+          </div>
+        </div>
+        <p class="problem-text reveal">
+          Tu passes des heures à créer, tu livres un travail impeccable… et
+          ensuite tu dois supplier pour être payé. Les mails de relance
+          s'accumulent, le stress monte, et au bout d'un moment, tu laisses
+          tomber. Ce n'est pas normal. Tu mérites d'être payé pour ton travail.
+        </p>
+      </div>
+    </section>
+
+    <!-- =================== SOLUTION =================== -->
+    <section class="solution section" id="solution">
+      <div class="container text-center">
+        <h2 class="reveal">Flexo gère tout,<br />de la facture au tribunal</h2>
+        <p class="solution-sub reveal">
+          Trois étapes. Zéro stress. 100 % automatisé.
+        </p>
+        <div class="steps">
+          <div class="step reveal">
+            <div class="step-icon">
+              <svg
+                viewBox="0 0 36 36"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="6"
+                  y="4"
+                  width="24"
+                  height="28"
+                  rx="3"
+                  stroke="#7C3AED"
+                  stroke-width="2.2"
+                />
+                <line
+                  x1="11"
+                  y1="12"
+                  x2="25"
+                  y2="12"
+                  stroke="#7C3AED"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <line
+                  x1="11"
+                  y1="18"
+                  x2="21"
+                  y2="18"
+                  stroke="#7C3AED"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <line
+                  x1="11"
+                  y1="24"
+                  x2="18"
+                  y2="24"
+                  stroke="#7C3AED"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="step-number">1</div>
+            <h3>Crée ta facture en 3 clics</h3>
+            <p>
+              Interface intuitive, modèles pros pré-remplis. Tu factures en
+              moins de 2 minutes.
+            </p>
+          </div>
+          <div class="step reveal">
+            <div class="step-icon">
+              <svg
+                viewBox="0 0 36 36"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18 6C11.4 6 6 11.4 6 18s5.4 12 12 12 12-5.4 12-12"
+                  stroke="#7C3AED"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                />
+                <path d="M30 6l-4 6h6" fill="#7C3AED" />
+                <circle cx="18" cy="18" r="2" fill="#7C3AED" />
+                <line
+                  x1="18"
+                  y1="18"
+                  x2="18"
+                  y2="11"
+                  stroke="#7C3AED"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+                <line
+                  x1="18"
+                  y1="18"
+                  x2="23"
+                  y2="20"
+                  stroke="#7C3AED"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </div>
+            <div class="step-number">2</div>
+            <h3>Flexo relance automatiquement</h3>
+            <p>
+              5 niveaux d'escalade progressifs : du rappel amical à la mise en
+              demeure. Tout est automatisé.
+            </p>
+          </div>
+          <div class="step reveal">
+            <div class="step-icon">
+              <svg
+                viewBox="0 0 36 36"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8 8h20v20H8z"
+                  stroke="#7C3AED"
+                  stroke-width="2.2"
+                  rx="2"
+                />
+                <path
+                  d="M14 18l3 3 6-7"
+                  stroke="#7C3AED"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 4v5M24 4v5"
+                  stroke="#7C3AED"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                />
+                <line
+                  x1="8"
+                  y1="13"
+                  x2="28"
+                  y2="13"
+                  stroke="#7C3AED"
+                  stroke-width="2"
+                />
+              </svg>
+            </div>
+            <div class="step-number">3</div>
+            <h3>Escalade juridique automatique</h3>
+            <p>
+              Toujours impayé ? Flexo génère la mise en demeure, le dossier
+              d'injonction et te met en relation avec un huissier.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== FONCTIONNALITÉS =================== -->
+    <section class="features section" id="fonctionnalites">
+      <div class="container text-center">
+        <h2 class="reveal">
+          Tout ce qu'il te faut pour<br />être payé à temps
+        </h2>
+        <div class="features-grid">
+          <div class="feature-card reveal">
+            <div class="feature-icon purple">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#7C3AED"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <line x1="7" y1="9" x2="17" y2="9" />
+                <line x1="7" y1="13" x2="14" y2="13" />
+                <line x1="7" y1="17" x2="11" y2="17" />
+              </svg>
+            </div>
+            <h3>Facturation pro en 3 clics</h3>
+            <p>
+              Modèles conformes, auto-remplissage client, envoi direct par
+              email. Simple et rapide.
+            </p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon amber">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#F59E0B"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5" />
+                <path d="M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <h3>5 niveaux de relances auto</h3>
+            <p>
+              Du rappel amical au courrier recommandé. L'escalade se fait
+              progressivement, sans effort de ta part.
+            </p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon red">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#EF4444"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </div>
+            <h3>Mise en demeure juridique auto</h3>
+            <p>
+              Plan SHIELD : Flexo génère et envoie ta mise en demeure à J+30.
+              Template validé par un avocat.
+            </p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon green">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#10B981"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <rect x="3" y="4" width="18" height="16" rx="2" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+                <line x1="9" y1="4" x2="9" y2="20" />
+              </svg>
+            </div>
+            <h3>Mini-compta URSSAF intégrée</h3>
+            <p>
+              Suivi CA, calcul charges, estimations URSSAF. Tout ce qu'il faut
+              pour rester serein côté administratif.
+            </p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon purple">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#7C3AED"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="M18 20V10M12 20V4M6 20v-6" />
+              </svg>
+            </div>
+            <h3>Dashboard CA / TJM / Prévisionnel</h3>
+            <p>
+              Visualise ton activité en temps réel : chiffre d'affaires, TJM
+              réel, projections sur 6 mois.
+            </p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon red">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#EF4444"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"
+                />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="9" y1="15" x2="15" y2="15" />
+              </svg>
+            </div>
+            <h3>Dossier injonction de payer</h3>
+            <p>
+              Plan SHIELD : à J+45, Flexo prépare automatiquement ton dossier
+              d'injonction de payer prêt à déposer.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== PRICING =================== -->
+    <section class="pricing section" id="pricing">
+      <div class="container text-center">
+        <h2 class="reveal">Un plan pour chaque freelance</h2>
+        <p class="pricing-sub reveal">
+          Commence gratuitement, protège-toi quand tu grandis.
+        </p>
+        <div class="pricing-grid">
+          <!-- FREE -->
+          <div class="pricing-card reveal">
+            <div class="pricing-name">Free</div>
+            <div class="pricing-price">0 € <span></span></div>
+            <div class="pricing-period">Gratuit pour toujours</div>
+            <ul class="pricing-features">
+              <li>3 factures par mois</li>
+              <li>Envoi par email</li>
+              <li>Suivi du statut de paiement</li>
+              <li>Templates de factures pros</li>
+            </ul>
+            <a href="#waitlist" class="btn btn-outline"
+              >Rejoindre la waitlist</a
+            >
+          </div>
+          <!-- PRO -->
+          <div class="pricing-card popular reveal">
+            <div class="popular-badge">⭐ Le plus populaire</div>
+            <div class="pricing-name">Pro</div>
+            <div class="pricing-price">19 € <span>/mois</span></div>
+            <div class="pricing-period">Tout pour être payé à chaque fois</div>
+            <ul class="pricing-features">
+              <li>Factures illimitées</li>
+              <li>5 niveaux de relances automatiques</li>
+              <li>Mini-compta URSSAF intégrée</li>
+              <li>Dashboard financier avancé</li>
+              <li>TJM réel & prévisionnel 6 mois</li>
+              <li>Support prioritaire</li>
+            </ul>
+            <a href="#waitlist" class="btn btn-primary"
+              >Rejoindre la waitlist</a
+            >
+          </div>
+          <!-- SHIELD -->
+          <div class="pricing-card reveal">
+            <div class="pricing-name">Shield</div>
+            <div class="pricing-price">35 € <span>/mois</span></div>
+            <div class="pricing-period">Protection juridique complète</div>
+            <ul class="pricing-features">
+              <li>Tout le plan PRO inclus</li>
+              <li>Mise en demeure auto à J+30</li>
+              <li>Dossier injonction de payer à J+45</li>
+              <li>Mise en relation huissier à J+60</li>
+              <li>Suivi juridique intégré</li>
+              <li>Templates validés par un avocat</li>
+            </ul>
+            <a href="#waitlist" class="btn btn-outline"
+              >Rejoindre la waitlist</a
+            >
+          </div>
+        </div>
+        <p class="pricing-lock reveal">
+          🔒 Prix bloqués pour les 500 premiers inscrits
+        </p>
+      </div>
+    </section>
+
+    <!-- =================== SOCIAL PROOF =================== -->
+    <section class="trust section" id="confiance">
+      <div class="container text-center">
+        <h2 class="reveal">Pourquoi nous faire confiance ?</h2>
+        <div class="trust-grid">
+          <div class="trust-card reveal">
+            <div class="trust-icon">⚖️</div>
+            <h3>Templates juridiques validés</h3>
+            <p>
+              Tous nos modèles (mise en demeure, injonction) sont rédigés et
+              validés par un avocat d'entreprise spécialisé.
+            </p>
+          </div>
+          <div class="trust-card reveal">
+            <div class="trust-icon">🇫🇷</div>
+            <h3>Conforme RGPD</h3>
+            <p>
+              Tes données sont hébergées en France, sur des serveurs certifiés.
+              Aucune revente, jamais.
+            </p>
+          </div>
+          <div class="trust-card reveal">
+            <div class="trust-icon">🎨</div>
+            <h3>Créé par un freelance</h3>
+            <p>
+              Fondé par un ex-graphiste freelance qui en avait marre de perdre
+              de l'argent. On connaît tes galères.
+            </p>
+          </div>
+        </div>
+
+        <!-- Testimonials 
+        <div class="testimonials">
+          <div class="testimonial reveal">
+            <p>
+              « J'ai perdu 3 800 € l'an dernier en impayés. Si Flexo avait
+              existé, j'aurais pu automatiser mes relances au lieu de supplier
+              mes clients par email. J'ai hâte de tester ! »
+            </p>
+            <div class="testimonial-author">Camille R.</div>
+            <div class="testimonial-role">Graphiste freelance</div>
+          </div>
+          <div class="testimonial reveal">
+            <p>
+              « Le concept de mise en demeure automatique, c'est exactement ce
+              qu'il nous manquait. Plus besoin de payer un avocat 300 € pour une
+              facture de 500 €. Génie. »
+            </p>
+            <div class="testimonial-author">Théo M.</div>
+            <div class="testimonial-role">Vidéaste indépendant</div>
+          </div>
+          <div class="testimonial reveal">
+            <p>
+              « Je passe 10h par mois à envoyer des relances manuelles. L'idée
+              d'un outil qui gère ça tout seul avec escalade juridique, c'est un
+              game changer pour les créatifs. »
+            </p>
+            <div class="testimonial-author">Sarah K.</div>
+            <div class="testimonial-role">Photographe freelance</div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <!-- =================== FAQ =================== -->
+    <section class="faq section" id="faq">
+      <div class="container text-center">
+        <h2 class="reveal">Questions fréquentes</h2>
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              <span>C'est quoi exactement Flexo ?</span>
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                />
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Flexo est un logiciel de facturation pensé pour les freelances
+                créatifs (graphistes, designers, photographes, vidéastes).
+                Contrairement aux outils classiques qui s'arrêtent à l'envoi de
+                la facture, Flexo automatise l'intégralité du processus de
+                recouvrement : relances progressives, mise en demeure, et même
+                la préparation du dossier d'injonction de payer en cas de
+                besoin.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              <span
+                >La mise en demeure automatique est-elle légalement valable
+                ?</span
+              >
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                />
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Oui. Nos templates de mise en demeure sont rédigés et validés
+                par un avocat d'entreprise spécialisé en droit commercial. Ils
+                respectent toutes les mentions obligatoires prévues par la loi
+                française. La mise en demeure est un courrier formel — elle n'a
+                pas besoin d'être rédigée par un avocat pour être valable
+                juridiquement.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              <span
+                >Flexo est-il compatible avec mon statut micro-entrepreneur
+                ?</span
+              >
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                />
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Absolument ! Flexo est conçu en priorité pour les
+                micro-entrepreneurs et freelances en France. Nos factures
+                respectent toutes les mentions obligatoires (SIRET, mention de
+                TVA non applicable selon l'article 293B du CGI, etc.). La
+                mini-compta intégrée est spécifiquement pensée pour les
+                déclarations URSSAF trimestrielles ou mensuelles.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              <span>Quand est-ce que Flexo sera disponible ?</span>
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                />
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Nous travaillons activement au développement de Flexo. Le
+                lancement de la version bêta est prévu pour début 2026. En
+                rejoignant la waitlist, tu seras parmi les premiers à y accéder
+                et tu bénéficies du prix bloqué « early adopter » garanti à vie.
+              </div>
+            </div>
+          </div>
+          <div class="faq-item reveal">
+            <button class="faq-question" aria-expanded="false">
+              <span>Pourquoi rejoindre la waitlist maintenant ?</span>
+              <svg class="faq-chevron" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                />
+              </svg>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Les 500 premiers inscrits bénéficient d'un tarif bloqué à vie
+                (même si nos prix augmentent après le lancement), d'un accès
+                prioritaire à la bêta, et de la possibilité de participer à la
+                conception du produit en nous faisant tes retours. C'est
+                gratuit, sans spam, et sans engagement.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== CTA FINAL =================== -->
+    <section class="cta-final section" id="waitlist">
+      <div class="container">
+        <h2 class="reveal">Ne perds plus un centime.<br />Rejoins Flexo.</h2>
+        <p class="cta-sub reveal">
+          Inscris-toi gratuitement et sois parmi les premiers à en finir avec
+          les impayés.
+        </p>
+        <form class="hero-form reveal" id="ctaForm" novalidate>
+          <input
+            type="email"
+            placeholder="ton@email.com"
+            aria-label="Adresse email"
+            required
+          />
+          <button type="submit" class="btn btn-primary">
+            Rejoindre la waitlist
+          </button>
+        </form>
+        <div class="form-error-msg" id="ctaError">
+          Merci d'entrer une adresse email valide.
+        </div>
+        <div class="form-success" id="ctaSuccess">
+          🎉 Tu es sur la liste ! On te contacte en avant-première.
+        </div>
+        <p class="form-note reveal">
+          Gratuit · Sans spam · Tu seras notifié en avant-première
+        </p>
+        <p class="waitlist-count reveal">
+          <span
+            >🔥 <strong class="counter">247</strong> freelances déjà
+            inscrits</span
+          >
+        </p>
+      </div>
+    </section>
+
+    <!-- =================== FOOTER =================== -->
+    <footer class="footer">
+      <div class="container">
+        <a href="#" class="logo">
+          <div class="logo-icon">F</div>
+          Flexo
+        </a>
+        <p class="footer-copy">© 2025 Flexo — Tous droits réservés</p>
+        <div class="footer-links">
+          <a href="#">Mentions légales</a>
+          <a href="#">CGU</a>
+          <a href="mailto:contact@flexo.fr">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =================== JAVASCRIPT =================== -->
+    <script>
+      (function () {
+        "use strict";
+
+        /* ---------- COUNTER ---------- */
+        let waitlistCount = 247;
+        const counters = document.querySelectorAll(".counter");
+        function updateCounters() {
+          counters.forEach(
+            (c) => (c.textContent = waitlistCount.toLocaleString("fr-FR")),
+          );
+        }
+
+        /* ---------- FORM HANDLING ---------- */
+        function validateEmail(email) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        async function handleSubmit(form, successEl, errorEl) {
+          const input = form.querySelector('input[type="email"]');
+          const btn = form.querySelector('button[type="submit"]');
+          const email = input.value.trim();
+
+          errorEl.style.display = "none";
+          if (!validateEmail(email)) {
+            errorEl.style.display = "block";
+            input.focus();
+            return;
+          }
+
+          // Loading state
+          const originalText = btn.textContent;
+          btn.textContent = "Inscription...";
+          btn.disabled = true;
+          input.disabled = true;
+
+          try {
+            const res = await fetch("/api/waitlist", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email }),
+            });
+
+            const data = await res.json();
+
+            if (res.ok && data.success) {
+              if (data.alreadyExists) {
+                successEl.textContent = "📬 Tu es déjà inscrit(e), à très vite !";
+              } else {
+                successEl.textContent = "🎉 Tu es sur la liste ! Vérifie ta boîte mail.";
+                waitlistCount++;
+                updateCounters();
+              }
+
+              form.style.display = "none";
+              successEl.style.display = "block";
+
+              // Also update the other form
+              const otherForm =
+                form.id === "heroForm"
+                  ? document.getElementById("ctaForm")
+                  : document.getElementById("heroForm");
+              const otherSuccess =
+                form.id === "heroForm"
+                  ? document.getElementById("ctaSuccess")
+                  : document.getElementById("heroSuccess");
+              if (otherForm) {
+                otherForm.style.display = "none";
+                otherSuccess.textContent = successEl.textContent;
+                otherSuccess.style.display = "block";
+              }
+            } else {
+              errorEl.textContent = data.error || "Une erreur s'est produite, réessaie dans quelques secondes.";
+              errorEl.style.display = "block";
+              btn.textContent = originalText;
+              btn.disabled = false;
+              input.disabled = false;
+            }
+          } catch (err) {
+            errorEl.textContent = "Une erreur s'est produite, réessaie dans quelques secondes.";
+            errorEl.style.display = "block";
+            btn.textContent = originalText;
+            btn.disabled = false;
+            input.disabled = false;
+          }
+        }
+
+        const heroForm = document.getElementById("heroForm");
+        const ctaForm = document.getElementById("ctaForm");
+
+        heroForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          handleSubmit(
+            heroForm,
+            document.getElementById("heroSuccess"),
+            document.getElementById("heroError"),
+          );
+        });
+
+        ctaForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          handleSubmit(
+            ctaForm,
+            document.getElementById("ctaSuccess"),
+            document.getElementById("ctaError"),
+          );
+        });
+
+        /* ---------- FAQ ACCORDION ---------- */
+        document.querySelectorAll(".faq-question").forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            const item = this.closest(".faq-item");
+            const isOpen = item.classList.contains("open");
+            // Close all
+            document
+              .querySelectorAll(".faq-item.open")
+              .forEach(function (openItem) {
+                openItem.classList.remove("open");
+                openItem
+                  .querySelector(".faq-question")
+                  .setAttribute("aria-expanded", "false");
+              });
+            // Toggle current
+            if (!isOpen) {
+              item.classList.add("open");
+              this.setAttribute("aria-expanded", "true");
+            }
+          });
+        });
+
+        /* ---------- NAVBAR SCROLL SHADOW ---------- */
+        const navbar = document.getElementById("navbar");
+        window.addEventListener(
+          "scroll",
+          function () {
+            navbar.classList.toggle("scrolled", window.scrollY > 10);
+          },
+          { passive: true },
+        );
+
+        /* ---------- REVEAL ON SCROLL ---------- */
+        const revealElements = document.querySelectorAll(".reveal");
+        const observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+        );
+
+        revealElements.forEach(function (el) {
+          observer.observe(el);
+        });
+
+        /* ---------- SMOOTH SCROLL FOR CTA BUTTONS ---------- */
+        document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            const id = this.getAttribute("href");
+            if (id === "#") return;
+            const target = document.querySelector(id);
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
