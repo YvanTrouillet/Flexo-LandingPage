@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mentions légales — Flexo</title>
+    <meta name="description" content="Mentions légales du site Flexo." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        color: #12101c;
+        background: #ffffff;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      a {
+        color: #7c3aed;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .container {
+        max-width: 780px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Navbar */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .navbar .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+        max-width: 1140px;
+      }
+      .logo {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: #7c3aed;
+        text-decoration: none;
+      }
+      .btn-back {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #6b7280;
+      }
+      .btn-back:hover {
+        color: #7c3aed;
+        text-decoration: none;
+      }
+
+      /* Content */
+      .legal {
+        padding: 64px 0 80px;
+      }
+      .legal h1 {
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        margin-bottom: 8px;
+      }
+      .legal .updated {
+        font-size: 0.85rem;
+        color: #6b7280;
+        margin-bottom: 40px;
+      }
+      .legal h2 {
+        font-size: 1.2rem;
+        margin-top: 40px;
+        margin-bottom: 12px;
+        color: #12101c;
+      }
+      .legal p,
+      .legal ul {
+        color: #4b5563;
+        margin-bottom: 16px;
+        font-size: 0.95rem;
+      }
+      .legal ul {
+        padding-left: 24px;
+      }
+      .legal li {
+        margin-bottom: 6px;
+      }
+
+      /* Footer */
+      .footer {
+        background: #12101c;
+        color: rgba(255, 255, 255, 0.5);
+        padding: 32px 0;
+        text-align: center;
+        font-size: 0.85rem;
+      }
+      .footer a {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .footer a:hover {
+        color: #fff;
+      }
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+
+      /* Page transitions */
+      @keyframes pageEnter {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      body {
+        animation: pageEnter 0.5s ease-out;
+      }
+      @view-transition {
+        navigation: auto;
+      }
+      ::view-transition-old(root) {
+        animation: 0.3s ease-out both vtOut;
+      }
+      ::view-transition-new(root) {
+        animation: 0.3s ease-out both vtIn;
+      }
+      @keyframes vtOut {
+        to {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+      }
+      @keyframes vtIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+      }
+
+      /* Content fade-in */
+      .legal h2 {
+        opacity: 0;
+        animation: fadeUp 0.5s ease forwards;
+      }
+      .legal h2:nth-of-type(1) {
+        animation-delay: 0.1s;
+      }
+      .legal h2:nth-of-type(2) {
+        animation-delay: 0.15s;
+      }
+      .legal h2:nth-of-type(3) {
+        animation-delay: 0.2s;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Link hover */
+      .btn-back {
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+        display: inline-block;
+      }
+      .btn-back:hover {
+        transform: translateX(-3px);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <a href="/" class="logo">Flexo</a>
+        <a href="/" class="btn-back">← Retour à l'accueil</a>
+      </div>
+    </nav>
+
+    <main class="legal">
+      <div class="container">
+        <h1>Mentions légales</h1>
+        <p class="updated">Dernière mise à jour : 23 février 2026</p>
+
+        <h2>1. Éditeur du site</h2>
+        <p>
+          Le site <strong>flexo.app</strong> (ci-après « le Site ») est édité
+          par :
+        </p>
+        <ul>
+          <li>
+            <strong>Raison sociale :</strong> Flexo (en cours d'immatriculation)
+          </li>
+          <li>
+            <strong>Forme juridique :</strong> [À compléter — SAS, SASU,
+            micro-entreprise, etc.]
+          </li>
+          <li><strong>Siège social :</strong> [Adresse à compléter]</li>
+          <li>
+            <strong>Numéro SIRET :</strong> [À compléter après immatriculation]
+          </li>
+          <li>
+            <strong>Numéro RCS :</strong> [À compléter après immatriculation]
+          </li>
+          <li><strong>Capital social :</strong> [À compléter]</li>
+          <li>
+            <strong>Directeur de la publication :</strong> [Prénom Nom du
+            responsable]
+          </li>
+          <li>
+            <strong>Adresse email :</strong>
+            <a href="mailto:contact@flexo.app">contact@flexo.app</a>
+          </li>
+          <li>
+            <strong>Numéro de TVA intracommunautaire :</strong> [À compléter ou
+            « Non applicable (article 293 B du CGI) »]
+          </li>
+        </ul>
+
+        <h2>2. Hébergeur du site</h2>
+        <ul>
+          <li><strong>Raison sociale :</strong> Vercel Inc.</li>
+          <li>
+            <strong>Adresse :</strong> 440 N Barranca Ave #4133, Covina, CA
+            91723, États-Unis
+          </li>
+          <li>
+            <strong>Site web :</strong>
+            <a href="https://vercel.com" target="_blank" rel="noopener"
+              >vercel.com</a
+            >
+          </li>
+        </ul>
+
+        <h2>3. Propriété intellectuelle</h2>
+        <p>
+          L'ensemble du contenu du Site (textes, graphiques, logos, icônes,
+          images, code source, design) est la propriété exclusive de Flexo ou de
+          ses partenaires, et est protégé par les lois françaises et
+          internationales relatives à la propriété intellectuelle (articles
+          L.111-1 et suivants du Code de la propriété intellectuelle).
+        </p>
+        <p>
+          Toute reproduction, représentation, modification, publication ou
+          adaptation de tout ou partie du contenu du Site, quel que soit le
+          moyen ou le procédé utilisé, est interdite sans l'autorisation écrite
+          préalable de Flexo.
+        </p>
+
+        <h2>4. Données personnelles et RGPD</h2>
+        <p>
+          Conformément au Règlement Général sur la Protection des Données (UE)
+          2016/679 (« RGPD ») et à la loi n° 78-17 du 6 janvier 1978 modifiée
+          relative à l'informatique, aux fichiers et aux libertés, Flexo
+          s'engage à protéger les données personnelles de ses utilisateurs.
+        </p>
+
+        <h3>4.1 Données collectées</h3>
+        <p>
+          Le Site collecte uniquement l'adresse email des visiteurs qui
+          s'inscrivent volontairement à la liste d'attente (waitlist). Aucune
+          autre donnée personnelle n'est collectée.
+        </p>
+
+        <h3>4.2 Finalité du traitement</h3>
+        <ul>
+          <li>Informer les inscrits de la disponibilité du service Flexo</li>
+          <li>
+            Communiquer des informations relatives au lancement du produit
+          </li>
+        </ul>
+
+        <h3>4.3 Base légale</h3>
+        <p>
+          Le traitement est fondé sur le consentement de l'utilisateur (article
+          6.1.a du RGPD), recueilli lors de l'inscription à la liste d'attente.
+        </p>
+
+        <h3>4.4 Durée de conservation</h3>
+        <p>
+          Les adresses email sont conservées jusqu'au lancement du service, et
+          au maximum 36 mois à compter de la collecte, sauf demande de
+          suppression antérieure.
+        </p>
+
+        <h3>4.5 Sous-traitant</h3>
+        <p>
+          Les emails sont stockés via le service
+          <a href="https://resend.com" target="_blank" rel="noopener">Resend</a>
+          (Resend Inc.). Resend agit en qualité de sous-traitant au sens de
+          l'article 28 du RGPD.
+        </p>
+
+        <h3>4.6 Droits des utilisateurs</h3>
+        <p>
+          Conformément aux articles 15 à 22 du RGPD, vous disposez des droits
+          suivants :
+        </p>
+        <ul>
+          <li>
+            <strong>Droit d'accès :</strong> obtenir la confirmation que vos
+            données sont traitées et en obtenir une copie
+          </li>
+          <li>
+            <strong>Droit de rectification :</strong> corriger vos données
+            inexactes ou incomplètes
+          </li>
+          <li>
+            <strong>Droit d'effacement :</strong> demander la suppression de vos
+            données
+          </li>
+          <li>
+            <strong>Droit d'opposition :</strong> vous opposer au traitement de
+            vos données
+          </li>
+          <li>
+            <strong>Droit à la portabilité :</strong> recevoir vos données dans
+            un format structuré
+          </li>
+          <li>
+            <strong>Droit de retrait du consentement :</strong> retirer votre
+            consentement à tout moment
+          </li>
+        </ul>
+        <p>
+          Pour exercer ces droits, contactez-nous à :
+          <a href="mailto:contact@flexo.app">contact@flexo.app</a>. Nous nous
+          engageons à répondre dans un délai maximum de 30 jours.
+        </p>
+        <p>
+          En cas de différend, vous pouvez introduire une réclamation auprès de
+          la
+          <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a>
+          (Commission Nationale de l'Informatique et des Libertés).
+        </p>
+
+        <h2>5. Cookies</h2>
+        <p>
+          Le Site <strong>n'utilise aucun cookie</strong>, aucun traceur et
+          aucun outil d'analyse de trafic. Aucune donnée de navigation n'est
+          collectée.
+        </p>
+
+        <h2>6. Liens hypertextes</h2>
+        <p>
+          Le Site peut contenir des liens vers des sites tiers. Flexo n'exerce
+          aucun contrôle sur ces sites et décline toute responsabilité quant à
+          leur contenu ou leurs pratiques en matière de protection des données
+          personnelles.
+        </p>
+
+        <h2>7. Limitation de responsabilité</h2>
+        <p>
+          Flexo s'efforce de fournir des informations aussi précises que
+          possible sur le Site. Toutefois, Flexo ne saurait être tenu
+          responsable des omissions, inexactitudes ou lacunes dans les
+          informations diffusées, ni des dommages directs ou indirects résultant
+          de l'accès ou de l'utilisation du Site.
+        </p>
+        <p>
+          Le service Flexo étant en cours de développement, les fonctionnalités
+          et tarifs présentés sur le Site sont indicatifs et susceptibles
+          d'évoluer avant le lancement officiel.
+        </p>
+
+        <h2>8. Droit applicable et juridiction compétente</h2>
+        <p>
+          Les présentes mentions légales sont régies par le droit français. En
+          cas de litige, et après tentative de résolution amiable, les tribunaux
+          français seront seuls compétents.
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 Flexo — Tous droits réservés</p>
+        <div class="footer-links">
+          <a href="/mentions-legales.html">Mentions légales</a>
+          <a href="/cgu.html">CGU</a>
+          <a href="mailto:contact@flexo.app">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document
+        .querySelectorAll('a[href$=".html"], a[href="/"]')
+        .forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            var href = this.getAttribute("href");
+            if (!href || href.startsWith("#") || href.startsWith("mailto:"))
+              return;
+            if (document.startViewTransition) return;
+            e.preventDefault();
+            document.body.style.transition =
+              "opacity 0.25s ease, transform 0.25s ease";
+            document.body.style.opacity = "0";
+            document.body.style.transform = "translateY(-8px)";
+            setTimeout(function () {
+              window.location.href = href;
+            }, 260);
+          });
+        });
+    </script>
+  </body>
+</html>

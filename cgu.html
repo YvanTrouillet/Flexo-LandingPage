@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conditions Générales d'Utilisation — Flexo</title>
+    <meta
+      name="description"
+      content="Conditions Générales d'Utilisation du service Flexo."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        color: #12101c;
+        background: #ffffff;
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      a {
+        color: #7c3aed;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .container {
+        max-width: 780px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      /* Navbar */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid #e5e7eb;
+      }
+      .navbar .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+        max-width: 1140px;
+      }
+      .logo {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: #7c3aed;
+        text-decoration: none;
+      }
+      .btn-back {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #6b7280;
+      }
+      .btn-back:hover {
+        color: #7c3aed;
+        text-decoration: none;
+      }
+
+      /* Content */
+      .legal {
+        padding: 64px 0 80px;
+      }
+      .legal h1 {
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        margin-bottom: 8px;
+      }
+      .legal .updated {
+        font-size: 0.85rem;
+        color: #6b7280;
+        margin-bottom: 40px;
+      }
+      .legal h2 {
+        font-size: 1.2rem;
+        margin-top: 40px;
+        margin-bottom: 12px;
+        color: #12101c;
+      }
+      .legal h3 {
+        font-size: 1.05rem;
+        margin-top: 24px;
+        margin-bottom: 8px;
+        color: #12101c;
+      }
+      .legal p,
+      .legal ul {
+        color: #4b5563;
+        margin-bottom: 16px;
+        font-size: 0.95rem;
+      }
+      .legal ul {
+        padding-left: 24px;
+      }
+      .legal li {
+        margin-bottom: 6px;
+      }
+
+      /* Footer */
+      .footer {
+        background: #12101c;
+        color: rgba(255, 255, 255, 0.5);
+        padding: 32px 0;
+        text-align: center;
+        font-size: 0.85rem;
+      }
+      .footer a {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .footer a:hover {
+        color: #fff;
+      }
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+
+      /* Page transitions */
+      @keyframes pageEnter {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      body {
+        animation: pageEnter 0.5s ease-out;
+      }
+      @view-transition {
+        navigation: auto;
+      }
+      ::view-transition-old(root) {
+        animation: 0.3s ease-out both vtOut;
+      }
+      ::view-transition-new(root) {
+        animation: 0.3s ease-out both vtIn;
+      }
+      @keyframes vtOut {
+        to {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+      }
+      @keyframes vtIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+      }
+
+      /* Content fade-in */
+      .legal h2 {
+        opacity: 0;
+        animation: fadeUp 0.5s ease forwards;
+      }
+      .legal h2:nth-of-type(1) {
+        animation-delay: 0.1s;
+      }
+      .legal h2:nth-of-type(2) {
+        animation-delay: 0.15s;
+      }
+      .legal h2:nth-of-type(3) {
+        animation-delay: 0.2s;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Link hover */
+      .btn-back {
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+        display: inline-block;
+      }
+      .btn-back:hover {
+        transform: translateX(-3px);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <a href="/" class="logo">Flexo</a>
+        <a href="/" class="btn-back">← Retour à l'accueil</a>
+      </div>
+    </nav>
+
+    <main class="legal">
+      <div class="container">
+        <h1>Conditions Générales d'Utilisation</h1>
+        <p class="updated">Dernière mise à jour : 23 février 2026</p>
+
+        <h2>1. Objet</h2>
+        <p>
+          Les présentes Conditions Générales d'Utilisation (ci-après « CGU »)
+          définissent les modalités d'accès et d'utilisation du site
+          <strong>flexo.app</strong> (ci-après « le Site ») et du service Flexo
+          (ci-après « le Service »), édité par Flexo (ci-après « l'Éditeur »).
+        </p>
+        <p>
+          En accédant au Site ou en s'inscrivant à la liste d'attente,
+          l'utilisateur (ci-après « l'Utilisateur ») accepte sans réserve les
+          présentes CGU. Si l'Utilisateur n'accepte pas ces conditions, il doit
+          cesser immédiatement d'utiliser le Site.
+        </p>
+
+        <h2>2. Description du Service</h2>
+        <p>
+          Flexo est un logiciel en tant que service (SaaS) de facturation et de
+          recouvrement automatisé, destiné aux travailleurs indépendants et
+          freelances. Le Service permet notamment :
+        </p>
+        <ul>
+          <li>
+            La création et l'envoi de factures conformes à la réglementation
+            française
+          </li>
+          <li>
+            L'automatisation des relances de paiement (jusqu'à 5 niveaux
+            d'escalade)
+          </li>
+          <li>La génération automatique de mises en demeure</li>
+          <li>La préparation de dossiers d'injonction de payer</li>
+          <li>
+            La mise en relation avec des huissiers de justice (commissaires de
+            justice)
+          </li>
+          <li>
+            Le suivi comptable simplifié adapté au régime micro-entrepreneur
+          </li>
+        </ul>
+        <p>
+          <strong
+            >Le Service est actuellement en phase de développement.</strong
+          >
+          Le Site permet uniquement de s'inscrire à une liste d'attente en vue
+          du lancement. Les fonctionnalités décrites sont celles prévues au
+          lancement et sont susceptibles d'évoluer.
+        </p>
+
+        <h2>3. Inscription à la liste d'attente</h2>
+
+        <h3>3.1 Modalités</h3>
+        <p>
+          L'inscription à la liste d'attente est gratuite et requiert uniquement
+          la fourniture d'une adresse email valide. L'Utilisateur garantit
+          l'exactitude de l'adresse email communiquée.
+        </p>
+
+        <h3>3.2 Confirmation</h3>
+        <p>
+          Un email de confirmation est envoyé à l'adresse fournie. L'inscription
+          est effective dès la soumission du formulaire.
+        </p>
+
+        <h3>3.3 Engagements</h3>
+        <p>
+          L'inscription à la liste d'attente ne constitue pas un contrat
+          d'abonnement et n'engage l'Utilisateur à aucun paiement ni obligation.
+          L'Éditeur n'est pas tenu par un délai de lancement du Service.
+        </p>
+
+        <h3>3.4 Offre « early adopter »</h3>
+        <p>
+          L'Éditeur s'engage à proposer aux premiers inscrits un tarif
+          préférentiel bloqué lors du lancement du Service, dans la limite des
+          places disponibles et selon les conditions qui seront précisées au
+          lancement.
+        </p>
+
+        <h2>4. Conditions d'utilisation du Site</h2>
+
+        <h3>4.1 Accès au Site</h3>
+        <p>
+          Le Site est accessible gratuitement à tout utilisateur disposant d'un
+          accès à Internet. L'Éditeur met en œuvre les moyens raisonnables pour
+          assurer un accès continu au Site, mais ne saurait garantir une
+          disponibilité permanente.
+        </p>
+
+        <h3>4.2 Comportements interdits</h3>
+        <p>L'Utilisateur s'interdit de :</p>
+        <ul>
+          <li>
+            Utiliser le Site de manière frauduleuse ou à des fins illicites
+          </li>
+          <li>
+            Tenter d'accéder de manière non autorisée aux systèmes informatiques
+            de l'Éditeur
+          </li>
+          <li>Soumettre des adresses email de tiers sans leur consentement</li>
+          <li>
+            Utiliser des robots, scrapers ou tout outil automatisé pour
+            interagir avec le Site de manière abusive
+          </li>
+          <li>
+            Perturber le fonctionnement du Site ou surcharger l'infrastructure
+            technique
+          </li>
+        </ul>
+
+        <h2>5. Tarification (applicable au lancement)</h2>
+        <p>
+          Les tarifs indiqués sur le Site sont exprimés en euros (€) toutes
+          taxes comprises (ou hors taxes le cas échéant, selon le statut fiscal
+          de l'Éditeur au moment du lancement). Trois formules sont prévues :
+        </p>
+        <ul>
+          <li>
+            <strong>FREE :</strong> 0 € — Fonctionnalités de base, limite de 3
+            factures par mois
+          </li>
+          <li>
+            <strong>PRO :</strong> 19 €/mois — Factures illimitées, relances
+            automatiques, mini-compta URSSAF, dashboard financier avancé
+          </li>
+          <li>
+            <strong>SHIELD :</strong> 35 €/mois — Toutes les fonctionnalités
+            PRO, plus mise en demeure automatique, dossier d'injonction de payer
+            et mise en relation huissier
+          </li>
+        </ul>
+        <p>
+          Ces tarifs sont indicatifs et pourront être modifiés avant le
+          lancement officiel du Service. Les inscrits à la liste d'attente
+          bénéficiant de l'offre « early adopter » se verront appliquer le tarif
+          en vigueur au moment de leur inscription, selon les conditions
+          communiquées.
+        </p>
+
+        <h2>6. Propriété intellectuelle</h2>
+        <p>
+          L'ensemble des éléments composant le Site et le Service (textes,
+          graphiques, logiciels, bases de données, marques, logos, code source)
+          sont protégés par les dispositions du Code de la propriété
+          intellectuelle et par les traités internationaux applicables.
+        </p>
+        <p>
+          Toute reproduction, représentation ou exploitation non autorisée, même
+          partielle, est constitutive de contrefaçon et peut faire l'objet de
+          poursuites civiles et pénales (articles L.335-2 et suivants du Code de
+          la propriété intellectuelle).
+        </p>
+
+        <h2>7. Protection des données personnelles</h2>
+        <p>
+          Le traitement des données personnelles est décrit dans nos
+          <a href="/mentions-legales.html">Mentions légales</a> (section Données
+          personnelles et RGPD). L'Éditeur s'engage à respecter le Règlement
+          (UE) 2016/679 (RGPD) et la loi Informatique et Libertés du 6 janvier
+          1978 modifiée.
+        </p>
+        <p>
+          L'Utilisateur dispose des droits d'accès, de rectification,
+          d'effacement, d'opposition, de limitation et de portabilité de ses
+          données. Ces droits peuvent être exercés en contactant :
+          <a href="mailto:contact@flexo.app">contact@flexo.app</a>.
+        </p>
+
+        <h2>8. Responsabilité</h2>
+
+        <h3>8.1 Informations du Site</h3>
+        <p>
+          Les informations et fonctionnalités présentées sur le Site le sont à
+          titre informatif et ne constituent pas un engagement contractuel de
+          l'Éditeur quant aux caractéristiques définitives du Service.
+        </p>
+
+        <h3>8.2 Nature des services juridiques</h3>
+        <p>
+          Flexo n'est pas un cabinet d'avocats. Le Service propose des outils
+          d'aide à la rédaction de documents juridiques (mises en demeure,
+          dossiers d'injonction de payer) à partir de modèles validés par un
+          professionnel du droit. Ces documents sont générés sous la
+          responsabilité de l'Utilisateur qui les utilise.
+        </p>
+        <p>
+          L'utilisation du Service ne se substitue en aucun cas à un conseil
+          juridique personnalisé. L'Éditeur recommande à l'Utilisateur de
+          consulter un professionnel du droit pour toute situation complexe.
+        </p>
+
+        <h3>8.3 Limitation</h3>
+        <p>
+          L'Éditeur ne saurait être tenu responsable des dommages directs ou
+          indirects résultant de l'utilisation du Site ou du Service, notamment
+          en cas d'interruption de service, de perte de données ou de résultats
+          obtenus suite à l'utilisation des documents générés par le Service.
+        </p>
+
+        <h2>9. Droit de rétractation</h2>
+        <p>
+          Conformément à l'article L.221-28 du Code de la consommation, le droit
+          de rétractation ne s'applique pas aux contrats de fourniture de
+          contenu numérique non fourni sur un support matériel dont l'exécution
+          a commencé avec l'accord du consommateur. Les conditions précises
+          seront détaillées au lancement du Service.
+        </p>
+        <p>
+          L'inscription à la liste d'attente étant gratuite et sans engagement,
+          l'Utilisateur peut demander la suppression de ses données à tout
+          moment par simple email.
+        </p>
+
+        <h2>10. Modification des CGU</h2>
+        <p>
+          L'Éditeur se réserve le droit de modifier les présentes CGU à tout
+          moment. Les modifications entrent en vigueur dès leur publication sur
+          le Site. L'Utilisateur est invité à consulter régulièrement cette
+          page.
+        </p>
+        <p>
+          En cas de modification substantielle, les utilisateurs inscrits à la
+          liste d'attente seront informés par email.
+        </p>
+
+        <h2>11. Médiation des litiges</h2>
+        <p>
+          Conformément aux articles L.612-1 et suivants du Code de la
+          consommation, en cas de litige non résolu à l'amiable, l'Utilisateur
+          peut recourir gratuitement à un médiateur de la consommation. Les
+          coordonnées du médiateur compétent seront communiquées au lancement du
+          Service.
+        </p>
+        <p>
+          L'Utilisateur peut également déposer une réclamation sur la plateforme
+          européenne de règlement en ligne des litiges :
+          <a
+            href="https://ec.europa.eu/consumers/odr"
+            target="_blank"
+            rel="noopener"
+            >https://ec.europa.eu/consumers/odr</a
+          >.
+        </p>
+
+        <h2>12. Droit applicable et juridiction</h2>
+        <p>
+          Les présentes CGU sont régies par le droit français. En cas de litige
+          relatif à l'interprétation ou à l'exécution des présentes, et à défaut
+          de résolution amiable ou de médiation, les tribunaux français seront
+          seuls compétents.
+        </p>
+
+        <h2>13. Contact</h2>
+        <p>
+          Pour toute question relative aux présentes CGU, vous pouvez nous
+          contacter à l'adresse :
+          <a href="mailto:contact@flexo.app">contact@flexo.app</a>.
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <p>© 2026 Flexo — Tous droits réservés</p>
+        <div class="footer-links">
+          <a href="/mentions-legales.html">Mentions légales</a>
+          <a href="/cgu.html">CGU</a>
+          <a href="mailto:contact@flexo.app">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document
+        .querySelectorAll('a[href$=".html"], a[href="/"]')
+        .forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            var href = this.getAttribute("href");
+            if (!href || href.startsWith("#") || href.startsWith("mailto:"))
+              return;
+            if (document.startViewTransition) return;
+            e.preventDefault();
+            document.body.style.transition =
+              "opacity 0.25s ease, transform 0.25s ease";
+            document.body.style.opacity = "0";
+            document.body.style.transform = "translateY(-8px)";
+            setTimeout(function () {
+              window.location.href = href;
+            }, 260);
+          });
+        });
+    </script>
+  </body>
+</html>
