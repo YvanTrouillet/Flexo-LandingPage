@@ -1,623 +1,24 @@
 <!DOCTYPE html>
-
 <html lang="fr">
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Flexo — Tes impayés n'ont plus d'avenir</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;0,900;1,200;1,300;1,700&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-```
-:root {
-  --black:   #080809;
-  --off:     #0e0e11;
-  --surface: #141418;
-  --coral:   #e86b5f;
-  --coral2:  #f09080;
-  --blue:    #6b9de8;
-  --violet:  #8b72d4;
-  --white:   #f2ede8;
-  --muted:   rgba(242,237,232,0.4);
-  --border:  rgba(242,237,232,0.08);
-  --font:    'Urbanist', sans-serif;
-}
-
-html { scroll-behavior: smooth; }
-body { background: var(--black); color: var(--white); font-family: var(--font); overflow-x: hidden; }
-::selection { background: var(--coral); color: var(--black); }
-
-/* ══════════════
-   PRELOADER
-══════════════ */
-#preloader {
-  position: fixed; inset: 0; z-index: 9999;
-  background: var(--black);
-  display: flex; flex-direction: column;
-  justify-content: space-between;
-  padding: 5vw;
-  transition: opacity .8s ease, visibility .8s;
-}
-#preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-.pre-top {
-  font-size: 11px; font-weight: 600; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--muted);
-}
-.pre-center {
-  text-align: center;
-}
-.pre-num {
-  font-size: clamp(90px, 20vw, 240px);
-  font-weight: 200; line-height: 1; letter-spacing: -.05em;
-  color: var(--white); font-style: italic;
-}
-.pre-bar-wrap {
-  width: 100%; height: 1px; background: var(--border); overflow: hidden;
-}
-.pre-bar { height: 100%; background: var(--coral); width: 0; transition: width .04s linear; }
-.pre-bottom {
-  display: flex; justify-content: space-between;
-  font-size: 11px; font-weight: 500; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--muted);
-}
-
-/* ══════════════
-   NAV
-══════════════ */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 28px 5vw;
-  mix-blend-mode: normal;
-  pointer-events: none;
-}
-nav > * { pointer-events: all; }
-.nav-logo {
-  font-size: 15px; font-weight: 800; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--white);
-  text-decoration: none;
-}
-.nav-logo .accent { color: var(--coral); }
-.nav-right {
-  display: flex; gap: 32px; align-items: center;
-}
-.nav-link {
-  font-size: 11px; font-weight: 600; letter-spacing: .12em;
-  text-transform: uppercase; color: var(--muted); text-decoration: none;
-  transition: color .2s;
-}
-.nav-link:hover { color: var(--white); }
-.nav-btn {
-  font-family: var(--font); font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--black); background: var(--white);
-  border: none; padding: 10px 20px; cursor: pointer;
-  transition: background .2s;
-}
-.nav-btn:hover { background: var(--coral); color: var(--white); }
-
-/* ══════════════
-   HERO
-══════════════ */
-.hero {
-  position: relative; height: 100vh; min-height: 700px;
-  overflow: hidden;
-}
-.hero-bg {
-  position: absolute; inset: 0;
-  background: url('/mnt/user-data/uploads/3d-background-8000x5000-9771.jpg') center/cover;
-  filter: brightness(.38) saturate(1.1);
-  transform: scale(1.04);
-  transition: transform 8s ease;
-}
-.hero-bg.loaded { transform: scale(1); }
-/* top & bottom fade */
-.hero::before {
-  content: ''; position: absolute; inset: 0; z-index: 1;
-  background:
-    linear-gradient(to bottom, var(--black) 0%, transparent 18%, transparent 72%, var(--black) 100%),
-    linear-gradient(to right, var(--black) 0%, transparent 50%);
-}
-.hero-content {
-  position: relative; z-index: 2;
-  height: 100%; display: flex; flex-direction: column;
-  justify-content: flex-end; padding: 0 5vw 7vh;
-}
-.hero-eyebrow {
-  font-size: 10px; font-weight: 600; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--coral);
-  margin-bottom: 18px;
-}
-h1 {
-  font-size: clamp(54px, 10.5vw, 148px);
-  font-weight: 800; line-height: .9; letter-spacing: -.04em;
-  color: var(--white); margin-bottom: 0;
-}
-h1 .light { font-weight: 200; font-style: italic; }
-h1 .coral { color: var(--coral); }
-
-.hero-bottom {
-  display: flex; justify-content: space-between; align-items: flex-end;
-  margin-top: 40px; padding-top: 28px;
-  border-top: 1px solid var(--border);
-}
-.hero-sub {
-  font-size: 15px; font-weight: 300; font-style: italic;
-  color: var(--muted); max-width: 380px; line-height: 1.7;
-}
-.hero-actions { display: flex; gap: 12px; }
-.btn-fill {
-  font-family: var(--font); font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--black); background: var(--white);
-  border: none; padding: 13px 26px; cursor: pointer; transition: all .2s;
-}
-.btn-fill:hover { background: var(--coral); color: var(--white); }
-.btn-line {
-  font-family: var(--font); font-size: 11px; font-weight: 600;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--muted); background: transparent;
-  border: 1px solid var(--border); padding: 12px 22px; cursor: pointer; transition: all .2s;
-}
-.btn-line:hover { color: var(--white); border-color: rgba(242,237,232,.3); }
-
-/* right side meta */
-.hero-meta {
-  position: absolute; right: 5vw; top: 50%; transform: translateY(-50%);
-  z-index: 3; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;
-}
-.hero-meta-item {
-  font-size: 9px; font-weight: 600; letter-spacing: .2em;
-  text-transform: uppercase; color: var(--muted);
-}
-.hero-meta-line {
-  width: 1px; height: 72px;
-  background: linear-gradient(to bottom, var(--coral), transparent);
-}
-
-/* ══════════════
-   MARQUEE
-══════════════ */
-.marquee {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 15px 0; overflow: hidden; white-space: nowrap;
-  background: var(--off);
-}
-.marquee-track {
-  display: inline-flex;
-  animation: marquee 28s linear infinite;
-}
-.marquee-item {
-  display: inline-flex; align-items: center; gap: 20px;
-  padding: 0 32px;
-  font-size: 10px; font-weight: 700; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--muted);
-}
-.marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--coral); flex-shrink: 0; }
-@keyframes marquee { to { transform: translateX(-50%); } }
-
-/* ══════════════
-   SECTIONS BASE
-══════════════ */
-.section { padding: 100px 5vw; }
-.section + .section { border-top: 1px solid var(--border); }
-
-.section-label {
-  font-size: 10px; font-weight: 700; letter-spacing: .2em;
-  text-transform: uppercase; color: var(--muted);
-  display: flex; align-items: center; gap: 12px; margin-bottom: 52px;
-}
-.section-label::before {
-  content: ''; width: 28px; height: 1px; background: var(--coral);
-}
-
-/* ══════════════
-   INTRO — Lando "redefining limits" editorial text
-══════════════ */
-.intro-section {
-  padding: 100px 5vw;
-  border-top: 1px solid var(--border);
-}
-.intro-text {
-  font-size: clamp(26px, 3.8vw, 54px);
-  font-weight: 300; line-height: 1.25; letter-spacing: -.02em;
-  color: var(--muted); max-width: 900px;
-}
-.intro-text strong { font-weight: 800; color: var(--white); }
-.intro-text em { font-style: italic; color: var(--coral); font-weight: 300; }
-.intro-byline {
-  margin-top: 36px;
-  display: flex; align-items: center; gap: 12px;
-  font-size: 11px; font-weight: 600; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--muted);
-}
-.intro-byline::before { content: '—'; color: var(--coral); }
-
-/* ══════════════
-   STATS STRIP
-══════════════ */
-.stats-strip {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  border: 1px solid var(--border);
-  background: var(--off);
-}
-.stat-block {
-  padding: 48px 40px;
-  border-right: 1px solid var(--border);
-}
-.stat-block:last-child { border-right: none; }
-.stat-big {
-  font-size: clamp(56px, 7vw, 96px); font-weight: 800;
-  line-height: 1; letter-spacing: -.04em; color: var(--white);
-}
-.stat-big .unit { color: var(--coral); }
-.stat-sub {
-  font-size: 13px; font-weight: 300; font-style: italic;
-  color: var(--muted); margin-top: 10px; line-height: 1.6;
-}
-
-/* ══════════════
-   ESCALADE — Lando "ON TRACK / OFF TRACK" split headings
-══════════════ */
-.escalade-heading {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
-  margin-bottom: 64px; align-items: end;
-}
-.esc-big-title {
-  font-size: clamp(52px, 8.5vw, 116px);
-  font-weight: 800; line-height: .88; letter-spacing: -.04em;
-  color: var(--white);
-}
-.esc-big-title .light { font-weight: 200; font-style: italic; color: var(--muted); }
-.esc-big-title .coral { color: var(--coral); }
-.esc-intro-copy {
-  font-size: 15px; font-weight: 300; font-style: italic;
-  color: var(--muted); line-height: 1.75;
-}
-
-.esc-rows { border-top: 1px solid var(--border); }
-.esc-row {
-  display: grid; grid-template-columns: 90px 48px 1fr auto;
-  gap: 0 28px; align-items: start;
-  padding: 30px 0; border-bottom: 1px solid var(--border);
-  transition: padding .22s;
-}
-.esc-row:hover { padding-left: 14px; padding-right: 14px; background: rgba(232,107,95,.04); }
-.esc-timing {
-  font-size: 10px; font-weight: 700; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--muted); padding-top: 5px;
-  line-height: 1.4;
-}
-.esc-index {
-  font-size: 11px; font-weight: 700; letter-spacing: .1em;
-  color: var(--coral); padding-top: 5px;
-}
-.esc-name {
-  font-size: clamp(20px, 2.4vw, 32px); font-weight: 700;
-  letter-spacing: -.02em; color: var(--white); margin-bottom: 7px;
-}
-.esc-desc {
-  font-size: 13px; font-weight: 300; font-style: italic;
-  color: var(--muted); line-height: 1.65; max-width: 520px;
-}
-.esc-pill {
-  font-size: 9px; font-weight: 700; letter-spacing: .12em;
-  text-transform: uppercase; padding: 5px 12px;
-  border: 1px solid; align-self: center; white-space: nowrap;
-}
-.pill-a { color: var(--blue);   border-color: rgba(107,157,232,.3); }
-.pill-j { color: var(--coral);  border-color: rgba(232,107,95,.3); }
-.pill-t { color: var(--violet); border-color: rgba(139,114,212,.3); }
-
-/* ══════════════
-   FEATURES — Lando-style split blocks with image-feel
-══════════════ */
-.features-split {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
-  border: 1px solid var(--border);
-}
-.feat-block {
-  padding: 56px 48px;
-  border-right: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  position: relative; overflow: hidden;
-  transition: background .25s;
-}
-.feat-block:nth-child(2n) { border-right: none; }
-.feat-block:nth-last-child(-n+2) { border-bottom: none; }
-.feat-block:hover { background: rgba(242,237,232,.02); }
-/* accent corner */
-.feat-block::before {
-  content: ''; position: absolute; top: 0; left: 0;
-  width: 3px; height: 0; background: var(--coral);
-  transition: height .35s ease;
-}
-.feat-block:hover::before { height: 100%; }
-
-.feat-num {
-  font-size: 10px; font-weight: 700; letter-spacing: .18em;
-  color: var(--coral); margin-bottom: 28px; text-transform: uppercase;
-}
-.feat-name {
-  font-size: clamp(22px, 2.5vw, 34px); font-weight: 700;
-  letter-spacing: -.02em; color: var(--white);
-  margin-bottom: 14px; line-height: 1.05;
-}
-.feat-desc {
-  font-size: 14px; font-weight: 300; font-style: italic;
-  color: var(--muted); line-height: 1.72;
-}
-
-/* ══════════════
-   PHOTO STRIP — Lando horizontal scroll
-══════════════ */
-.photo-strip {
-  padding: 80px 0 80px 5vw;
-  border-top: 1px solid var(--border);
-  overflow: hidden;
-}
-.strip-label {
-  font-size: 10px; font-weight: 700; letter-spacing: .2em;
-  text-transform: uppercase; color: var(--muted);
-  display: flex; align-items: center; gap: 12px;
-  margin-bottom: 36px; padding-right: 5vw;
-}
-.strip-label::before { content: ''; width: 28px; height: 1px; background: var(--coral); }
-.strip-track {
-  display: flex; gap: 16px;
-  animation: stripScroll 35s linear infinite;
-  width: max-content;
-}
-.strip-track:hover { animation-play-state: paused; }
-@keyframes stripScroll { to { transform: translateX(-50%); } }
-.strip-card {
-  flex-shrink: 0; width: 280px; height: 200px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  display: flex; flex-direction: column;
-  justify-content: flex-end; padding: 20px;
-  position: relative; overflow: hidden;
-}
-.strip-card-bg {
-  position: absolute; inset: 0;
-  opacity: .25;
-}
-.strip-card-label {
-  position: relative; z-index: 1;
-  font-size: 10px; font-weight: 600; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--muted);
-  margin-bottom: 4px;
-}
-.strip-card-val {
-  position: relative; z-index: 1;
-  font-size: 26px; font-weight: 800; letter-spacing: -.03em;
-  color: var(--white);
-}
-.strip-card-val .unit { font-size: 16px; color: var(--coral); }
-
-/* ══════════════
-   PRICING
-══════════════ */
-.pricing-wrap {
-  display: grid; grid-template-columns: repeat(4,1fr);
-  border: 1px solid var(--border);
-  margin-top: 56px;
-}
-.p-card {
-  padding: 40px 32px; border-right: 1px solid var(--border);
-  position: relative; transition: background .22s;
-}
-.p-card:last-child { border-right: none; }
-.p-card:hover { background: rgba(242,237,232,.03); }
-.p-card.hot {
-  background: var(--coral);
-}
-.p-card.hot:hover { background: #d45a4e; }
-.p-tier {
-  font-size: 9px; font-weight: 700; letter-spacing: .18em;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 18px;
-}
-.p-card.hot .p-tier { color: rgba(8,8,9,.55); }
-.p-name {
-  font-size: 30px; font-weight: 800; letter-spacing: -.03em;
-  color: var(--white); line-height: 1;
-}
-.p-card.hot .p-name { color: var(--black); }
-.p-price {
-  font-size: 13px; font-weight: 300; color: var(--muted);
-  margin: 6px 0 28px;
-}
-.p-price strong {
-  font-size: 36px; font-weight: 800; letter-spacing: -.03em;
-  color: var(--white);
-}
-.p-card.hot .p-price, .p-card.hot .p-price strong { color: var(--black); }
-.p-list { list-style: none; }
-.p-list li {
-  font-size: 13px; font-weight: 300; color: var(--muted);
-  padding: 8px 0; border-bottom: 1px solid var(--border);
-  display: flex; align-items: flex-start; gap: 9px; line-height: 1.5;
-}
-.p-card.hot .p-list li { border-color: rgba(8,8,9,.12); color: rgba(8,8,9,.75); }
-.p-list li:last-child { border: none; }
-.p-list li.off { opacity: .3; }
-.ck { flex-shrink: 0; font-size: 12px; }
-
-/* ══════════════
-   EDITORIAL QUOTE (Lando quote sections)
-══════════════ */
-.quote-section {
-  padding: 100px 5vw;
-  border-top: 1px solid var(--border);
-  display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: center;
-}
-.quote-label {
-  font-size: 10px; font-weight: 700; letter-spacing: .2em;
-  text-transform: uppercase; color: var(--muted);
-}
-.quote-text {
-  font-size: clamp(28px, 3.5vw, 50px); font-weight: 300;
-  font-style: italic; line-height: 1.2; letter-spacing: -.02em;
-  color: var(--white);
-}
-.quote-text strong { font-weight: 800; font-style: normal; color: var(--coral); }
-
-/* ══════════════
-   WAITLIST / CTA  — Lando big footer call
-══════════════ */
-.cta-wrap {
-  padding: 120px 5vw 100px;
-  border-top: 1px solid var(--border);
-  position: relative; overflow: hidden;
-}
-.cta-bg-img {
-  position: absolute; right: 0; top: 0; bottom: 0; width: 55%;
-  background: url('/mnt/user-data/uploads/3d-background-8000x5000-9771.jpg') center/cover;
-  opacity: .12;
-  mask-image: linear-gradient(to left, rgba(0,0,0,.9) 20%, transparent 80%);
-}
-.cta-inner { position: relative; z-index: 1; }
-.cta-overline {
-  font-size: 10px; font-weight: 700; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--coral); margin-bottom: 18px;
-}
-.cta-heading {
-  font-size: clamp(52px, 10vw, 140px);
-  font-weight: 800; line-height: .88; letter-spacing: -.04em;
-  color: var(--white); margin-bottom: 48px;
-}
-.cta-heading .light { font-weight: 200; font-style: italic; color: var(--muted); }
-.waitlist-row {
-  display: flex; gap: 0; max-width: 440px;
-  border: 1px solid rgba(242,237,232,.2);
-}
-.waitlist-row input {
-  flex: 1; background: transparent; border: none;
-  padding: 15px 18px; font-family: var(--font); font-size: 13px;
-  color: var(--white); outline: none;
-}
-.waitlist-row input::placeholder { color: var(--muted); }
-.waitlist-row button {
-  font-family: var(--font); font-size: 11px; font-weight: 700;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: var(--black); background: var(--white);
-  border: none; padding: 15px 24px; cursor: pointer; white-space: nowrap;
-  transition: background .2s;
-}
-.waitlist-row button:hover { background: var(--coral); color: var(--white); }
-.wl-note {
-  font-size: 10px; font-weight: 500; letter-spacing: .1em;
-  text-transform: uppercase; color: rgba(242,237,232,.22); margin-top: 14px;
-}
-.wl-success {
-  display: none; font-size: 13px; font-weight: 600; letter-spacing: .06em;
-  color: #6ddba8; margin-top: 16px; text-transform: uppercase;
-}
-.wl-avatars {
-  display: flex; align-items: center; gap: 12px; margin-top: 32px;
-}
-.avs { display: flex; }
-.av {
-  width: 30px; height: 30px; border-radius: 50%;
-  border: 2px solid var(--black); margin-left: -8px; font-size: 11px;
-  font-weight: 800; color: var(--black);
-  display: flex; align-items: center; justify-content: center;
-}
-.av:first-child { margin-left: 0; }
-.wl-proof {
-  font-size: 12px; font-weight: 500; letter-spacing: .06em;
-  text-transform: uppercase; color: var(--muted);
-}
-.wl-proof strong { color: var(--white); }
-
-/* ══════════════
-   FOOTER — Lando "Always bringing the fight" style
-══════════════ */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 80px 5vw 48px;
-  background: var(--off);
-}
-.footer-statement {
-  font-size: clamp(40px, 7vw, 96px);
-  font-weight: 800; line-height: .9; letter-spacing: -.04em;
-  color: var(--white); margin-bottom: 72px;
-}
-.footer-statement .light { font-weight: 200; font-style: italic; color: var(--muted); }
-.footer-statement .coral { color: var(--coral); }
-.footer-cols {
-  display: grid; grid-template-columns: 2fr 1fr 1fr;
-  gap: 64px; padding-top: 48px; margin-top: 0;
-  border-top: 1px solid var(--border);
-}
-.footer-brand {
-  font-size: 16px; font-weight: 800; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--white); margin-bottom: 14px;
-}
-.footer-brand span { color: var(--coral); }
-.footer-tagline {
-  font-size: 13px; font-weight: 300; font-style: italic;
-  color: var(--muted); line-height: 1.65; max-width: 280px;
-}
-.footer-col h5 {
-  font-size: 10px; font-weight: 700; letter-spacing: .16em;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 18px;
-}
-.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.footer-col a {
-  font-size: 14px; font-weight: 400; color: var(--muted);
-  text-decoration: none; transition: color .2s;
-}
-.footer-col a:hover { color: var(--white); }
-.footer-bottom {
-  margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--border);
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
-}
-.footer-copy { font-size: 11px; font-weight: 400; letter-spacing: .04em; color: var(--muted); }
-
-/* ══════════════
-   REVEAL
-══════════════ */
-.r { opacity: 0; transform: translateY(20px); transition: opacity .7s ease, transform .7s ease; }
-.r.v { opacity: 1; transform: none; }
-
-/* ══════════════
-   RESPONSIVE
-══════════════ */
-@media (max-width: 900px) {
-  .escalade-heading,
-  .features-split,
-  .quote-section,
-  .footer-cols { grid-template-columns: 1fr; gap: 32px; }
-  .features-split .feat-block { border-right: none !important; }
-  .stats-strip { grid-template-columns: 1fr; }
-  .stat-block { border-right: none; border-bottom: 1px solid var(--border); }
-  .pricing-wrap { grid-template-columns: 1fr 1fr; }
-  .p-card:nth-child(2n) { border-right: none; }
-  .p-card { border-bottom: 1px solid var(--border); }
-  .nav-right .nav-link { display: none; }
-  .hero-meta { display: none; }
-  .cta-bg-img { display: none; }
-}
-```
-
-  </style>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
 <!-- PRELOADER -->
-
-<div id="preloader">
+<div id="preloader" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
   <div class="pre-top">Flexo — Recouvrement automatisé</div>
   <div class="pre-center">
     <div class="pre-num" id="preNum">0</div>
   </div>
   <div>
     <div class="pre-bar-wrap"><div class="pre-bar" id="preBar"></div></div>
-    <div class="pre-bottom" style="margin-top:16px">
+    <div class="pre-bottom">
       <span>Chargement</span>
       <span id="preLabel">Initialisation...</span>
     </div>
@@ -625,23 +26,21 @@ footer {
 </div>
 
 <!-- NAV -->
-
-<nav>
+<nav aria-label="Navigation principale">
   <a class="nav-logo" href="#">FL<span class="accent">X</span>O</a>
   <div class="nav-right">
     <a class="nav-link" href="#escalade">Recouvrement</a>
     <a class="nav-link" href="#produit">Produit</a>
     <a class="nav-link" href="#tarifs">Tarifs</a>
-    <button class="nav-btn" onclick="scroll2('waitlist')">Rejoindre</button>
+    <button type="button" class="btn-primary nav-btn" data-scroll="waitlist">Rejoindre</button>
   </div>
 </nav>
 
 <!-- HERO -->
-
 <section class="hero">
-  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
 
-  <div class="hero-meta">
+  <div class="hero-meta" aria-hidden="true">
     <div class="hero-meta-item">Waitlist ouverte</div>
     <div class="hero-meta-line"></div>
     <div class="hero-meta-item">Lancement 2025</div>
@@ -649,30 +48,28 @@ footer {
 
   <div class="hero-content">
     <div class="hero-eyebrow r">Facturation · Recouvrement · Escalade juridique</div>
-    <h1 class="r" style="transition-delay:.1s">
+    <h1 class="r delay-1">
       Tes<br>
       <span class="light">imp</span>ayés<br>
       n'ont <span class="coral">plus</span><br>
       d'avenir.
     </h1>
-    <div class="hero-bottom r" style="transition-delay:.25s">
+    <div class="hero-bottom r delay-3">
       <p class="hero-sub">Le seul outil de facturation qui automatise l'escalade complète — de la relance amicale jusqu'au tribunal.</p>
       <div class="hero-actions">
-        <button class="btn-fill" onclick="scroll2('waitlist')">Rejoindre la waitlist →</button>
-        <button class="btn-line" onclick="scroll2('escalade')">Voir comment ça marche</button>
+        <button type="button" class="btn-primary btn-fill" data-scroll="waitlist">Rejoindre la waitlist →</button>
+        <button type="button" class="btn-line" data-scroll="escalade">Voir comment ça marche</button>
       </div>
     </div>
   </div>
 </section>
 
 <!-- MARQUEE -->
-
-<div class="marquee">
+<div class="marquee" aria-hidden="true">
   <div class="marquee-track" id="marqueeTrack"></div>
 </div>
 
 <!-- INTRO EDITORIAL -->
-
 <section class="intro-section r">
   <p class="intro-text">
     En moyenne, un freelance créatif perd <strong>6 000 € par an</strong> en impayés —
@@ -684,7 +81,6 @@ footer {
 </section>
 
 <!-- STATS -->
-
 <section class="section r">
   <div class="section-label">Le problème en chiffres</div>
   <div class="stats-strip">
@@ -704,7 +100,6 @@ footer {
 </section>
 
 <!-- ESCALADE -->
-
 <section class="section" id="escalade">
   <div class="escalade-heading r">
     <div>
@@ -715,12 +110,12 @@ footer {
         au <span class="coral">trib</span>unal.
       </div>
     </div>
-    <p class="esc-intro-copy r" style="transition-delay:.15s">
+    <p class="esc-intro-copy r delay-1">
       Flexo enchaîne automatiquement cinq niveaux d'escalade — sans que tu aies à rédiger une seule ligne. Chaque étape est documentée, validée juridiquement, et déclenchée au bon moment.
     </p>
   </div>
 
-  <div class="esc-rows r" style="transition-delay:.2s">
+  <div class="esc-rows r delay-2">
     <div class="esc-row">
       <div class="esc-timing">J + 0</div>
       <div class="esc-index">01.</div>
@@ -769,18 +164,16 @@ footer {
   </div>
 </section>
 
-<!-- PHOTO STRIP — dashboard stats as cards -->
-
-<div class="photo-strip r">
+<!-- PHOTO STRIP -->
+<div class="photo-strip r" aria-hidden="true">
   <div class="strip-label">Ce que Flexo surveille pour toi</div>
   <div class="strip-track" id="stripTrack"></div>
 </div>
 
 <!-- PRODUIT -->
-
 <section class="section" id="produit">
   <div class="section-label r">Ce qui est inclus</div>
-  <div class="features-split r" style="transition-delay:.1s">
+  <div class="features-split r delay-1">
     <div class="feat-block">
       <div class="feat-num">01</div>
       <div class="feat-name">Facturation pro</div>
@@ -805,7 +198,6 @@ footer {
 </section>
 
 <!-- EDITORIAL QUOTE -->
-
 <section class="quote-section r">
   <div class="quote-label">Pourquoi Flexo</div>
   <blockquote class="quote-text">
@@ -814,10 +206,9 @@ footer {
 </section>
 
 <!-- PRICING -->
-
 <section class="section" id="tarifs">
   <div class="section-label r">Tarifs</div>
-  <div class="pricing-wrap r" style="transition-delay:.1s">
+  <div class="pricing-wrap r delay-1">
     <div class="p-card">
       <div class="p-tier">Gratuit</div>
       <div class="p-name">Free</div>
@@ -854,10 +245,10 @@ footer {
         <li><span class="ck">✓</span> Templates validés avocat</li>
       </ul>
     </div>
-    <div class="p-card" style="border-left: 2px solid rgba(232,107,95,.5);">
-      <div class="p-tier" style="color:var(--coral)">⚡ 50 places · Prix gelé à vie</div>
-      <div class="p-name" style="color:var(--coral)">Fondateur</div>
-      <div class="p-price"><strong style="color:var(--coral)">149</strong> €/an</div>
+    <div class="p-card p-card--founder">
+      <div class="p-tier">⚡ 50 places · Prix gelé à vie</div>
+      <div class="p-name">Fondateur</div>
+      <div class="p-price"><strong>149</strong> €/an</div>
       <ul class="p-list">
         <li><span class="ck">✓</span> Tout Shield, à vie</li>
         <li><span class="ck">✓</span> Prix gelé à vie</li>
@@ -870,24 +261,25 @@ footer {
 </section>
 
 <!-- CTA / WAITLIST -->
-
 <section class="cta-wrap" id="waitlist">
-  <div class="cta-bg-img"></div>
+  <div class="cta-bg-img" aria-hidden="true"></div>
   <div class="cta-inner">
     <div class="cta-overline r">Accès anticipé — Waitlist ouverte</div>
-    <h2 class="cta-heading r" style="transition-delay:.1s">
+    <h2 class="cta-heading r delay-1">
       Prêt à être<br>
       <span class="light">enfin</span><br>
       payé ?
     </h2>
-    <div class="waitlist-row r" style="transition-delay:.2s">
-      <input type="email" id="emailInput" placeholder="ton@email.fr" autocomplete="email"/>
-      <button onclick="handleSubmit()">Rejoindre →</button>
-    </div>
-    <p class="wl-note r" style="transition-delay:.3s">Pas de spam. Désabonnement en un clic.</p>
-    <p class="wl-success" id="wlSuccess">✓ Inscription confirmée — on te tient au courant.</p>
-    <div class="wl-avatars r" style="transition-delay:.4s">
-      <div class="avs">
+    <form class="waitlist-form" id="waitlistForm" novalidate>
+      <div class="waitlist-row r delay-2">
+        <input type="email" id="emailInput" placeholder="ton@email.fr" autocomplete="email" aria-label="Adresse e-mail"/>
+        <button type="submit" class="btn-primary btn-submit">Rejoindre →</button>
+      </div>
+      <p class="wl-note r delay-4">Pas de spam. Désabonnement en un clic.</p>
+      <p class="wl-success" id="wlSuccess" role="status">✓ Inscription confirmée — on te tient au courant.</p>
+    </form>
+    <div class="wl-avatars r delay-5">
+      <div class="avs" aria-hidden="true">
         <div class="av" style="background:#a8b8e8">M</div>
         <div class="av" style="background:#a8d8b8">S</div>
         <div class="av" style="background:#e8c0a0">L</div>
@@ -899,7 +291,6 @@ footer {
 </section>
 
 <!-- FOOTER -->
-
 <footer>
   <div class="footer-statement">
     Ton argent<br>
@@ -924,83 +315,18 @@ footer {
       <h5>Contact</h5>
       <ul>
         <li><a href="mailto:contact@flexo.fr">contact@flexo.fr</a></li>
-        <li><a href="#">LinkedIn</a></li>
-        <li><a href="#">Twitter / X</a></li>
+        <li><a href="#" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="#" rel="noopener noreferrer">Twitter / X</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2025 Flexo — Tous droits réservés</span>
+    <span class="footer-copy">© 2026 Flexo — Tous droits réservés</span>
     <span class="footer-copy">Paris, France</span>
     <span class="footer-copy">Fait avec 🖤 par un freelance</span>
   </div>
 </footer>
 
-<script>
-/* ── PRELOADER ── */
-const preNum = document.getElementById('preNum');
-const preBar = document.getElementById('preBar');
-const preLabel = document.getElementById('preLabel');
-const preloader = document.getElementById('preloader');
-const labels = ['Initialisation...','Chargement des données...','Préparation de l\'interface...','Presque prêt...','Lancement !'];
-let p = 0;
-const iv = setInterval(() => {
-  p += Math.random() * 9 + 2;
-  if (p >= 100) { p = 100; clearInterval(iv); setTimeout(() => { preloader.classList.add('hidden'); document.getElementById('heroBg').classList.add('loaded'); triggerReveal(); }, 350); }
-  preNum.textContent = Math.floor(p);
-  preBar.style.width = p + '%';
-  preLabel.textContent = labels[Math.min(Math.floor(p / 25), 4)];
-}, 55);
-
-/* ── SCROLL REVEAL ── */
-function triggerReveal() {
-  const obs = new IntersectionObserver(e => e.forEach(en => { if (en.isIntersecting) en.target.classList.add('v'); }), { threshold: 0.08 });
-  document.querySelectorAll('.r').forEach(el => obs.observe(el));
-}
-
-/* ── MARQUEE ── */
-const mItems = ['Facture envoyée','Relance J+8','Relance J+1','Mise en demeure J+30','Injonction de payer J+45','Huissier J+60','Legal Shield','Mini-compta URSSAF','Dashboard financier','Impayés récupérés'];
-const mt = document.getElementById('marqueeTrack');
-mt.innerHTML = [...mItems,...mItems].map(t => `<span class="marquee-item"><span class="marquee-dot"></span>${t}</span>`).join('');
-
-/* ── STRIP CARDS ── */
-const cards = [
-  { label: 'CA en attente',    val: '4 200', unit: '€' },
-  { label: 'Payé ce mois',     val: '8 750', unit: '€', accent: true },
-  { label: 'En litige',        val: '1 800', unit: '€' },
-  { label: 'Relances actives', val: '3',     unit: '' },
-  { label: 'Taux récupération',val: '87',    unit: '%', accent: true },
-  { label: 'Taux journalier',  val: '480',   unit: '€' },
-  { label: 'Factures envoyées',val: '24',    unit: '' },
-  { label: 'Jours moyens paiement', val: '18', unit: 'j' },
-];
-const st = document.getElementById('stripTrack');
-const allCards = [...cards, ...cards];
-st.innerHTML = allCards.map((c, i) => `
-  <div class="strip-card">
-    <div class="strip-card-bg" style="background:linear-gradient(135deg,${i%3===0?'rgba(107,157,232,.3)':i%3===1?'rgba(232,107,95,.3)':'rgba(139,114,212,.3)'} 0%,transparent 100%)"></div>
-    <div class="strip-card-label">${c.label}</div>
-    <div class="strip-card-val">${c.val}<span class="unit">${c.unit}</span></div>
-  </div>`).join('');
-
-/* ── SCROLL helper ── */
-function scroll2(id) { document.getElementById(id)?.scrollIntoView({behavior:'smooth'}); }
-
-/* ── WAITLIST ── */
-function handleSubmit() {
-  const input = document.getElementById('emailInput');
-  const email = input.value;
-  if (!email || !email.includes('@')) {
-    input.parentElement.style.borderColor = 'var(--coral)';
-    setTimeout(() => input.parentElement.style.borderColor = 'rgba(242,237,232,.2)', 1500);
-    return;
-  }
-  document.querySelector('.waitlist-row').style.display = 'none';
-  document.getElementById('wlSuccess').style.display = 'block';
-  console.log('Signup:', email);
-}
-document.getElementById('emailInput').addEventListener('keydown', e => { if (e.key === 'Enter') handleSubmit(); });
-</script>
-
+<script src="main.js"></script>
 </body>
 </html>
