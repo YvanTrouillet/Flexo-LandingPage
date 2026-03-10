@@ -1,20 +1,20 @@
 (function () {
-  'use strict';
+  "use strict";
 
   /* ══════════════════════════════════════
      PRELOADER
   ══════════════════════════════════════ */
-  const preNum    = document.getElementById('preNum');
-  const preBar    = document.getElementById('preBar');
-  const preLabel  = document.getElementById('preLabel');
-  const preloader = document.getElementById('preloader');
+  const preNum = document.getElementById("preNum");
+  const preBar = document.getElementById("preBar");
+  const preLabel = document.getElementById("preLabel");
+  const preloader = document.getElementById("preloader");
 
   const labels = [
-    'Initialisation…',
-    'Chargement des données…',
+    "Initialisation…",
+    "Chargement des données…",
     "Préparation de l'interface…",
-    'Presque prêt…',
-    'Lancement !',
+    "Presque prêt…",
+    "Lancement !",
   ];
 
   let p = 0;
@@ -23,91 +23,92 @@
     p = Math.min(p + Math.random() * 9 + 2, 100);
 
     preNum.textContent = Math.floor(p);
-    preBar.style.width = p + '%';
-    preloader.setAttribute('aria-valuenow', Math.floor(p));
+    preBar.style.width = p + "%";
+    preloader.setAttribute("aria-valuenow", Math.floor(p));
     preLabel.textContent = labels[Math.min(Math.floor(p / 25), 4)];
 
     if (p >= 100) {
       clearInterval(iv);
       setTimeout(() => {
-        preloader.classList.add('hidden');
-        document.getElementById('heroBg').classList.add('loaded');
+        preloader.classList.add("hidden");
+        document.getElementById("heroBg").classList.add("loaded");
         triggerReveal();
       }, 350);
     }
   }, 55);
 
-
   /* ══════════════════════════════════════
      SCROLL REVEAL
   ══════════════════════════════════════ */
   function triggerReveal() {
-    const els = document.querySelectorAll('.r');
+    const els = document.querySelectorAll(".r");
     let revealed = 0;
 
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(en => {
-        if (en.isIntersecting) {
-          en.target.classList.add('v');
-          obs.unobserve(en.target);
-          // Déconnecte l'observer quand tous les éléments sont révélés
-          if (++revealed === els.length) obs.disconnect();
-        }
-      });
-    }, { threshold: 0.08 });
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.classList.add("v");
+            obs.unobserve(en.target);
+            // Déconnecte l'observer quand tous les éléments sont révélés
+            if (++revealed === els.length) obs.disconnect();
+          }
+        });
+      },
+      { threshold: 0.08 },
+    );
 
-    els.forEach(el => obs.observe(el));
+    els.forEach((el) => obs.observe(el));
   }
-
 
   /* ══════════════════════════════════════
      MARQUEE
   ══════════════════════════════════════ */
   const mItems = [
-    'Facture envoyée',
-    'Relance J+8',
-    'Relance J+15',
-    'Mise en demeure J+30',
-    'Injonction de payer J+45',
-    'Huissier J+60',
-    'Legal Shield',
-    'Mini-compta URSSAF',
-    'Dashboard financier',
-    'Impayés récupérés',
+    "Facture envoyée",
+    "Relance J+8",
+    "Relance J+15",
+    "Mise en demeure J+30",
+    "Injonction de payer J+45",
+    "Huissier J+60",
+    "Legal Shield",
+    "Mini-compta URSSAF",
+    "Dashboard financier",
+    "Impayés récupérés",
   ];
 
-  document.getElementById('marqueeTrack').innerHTML =
-    [...mItems, ...mItems]
-      .map(t => `
+  document.getElementById("marqueeTrack").innerHTML = [...mItems, ...mItems]
+    .map(
+      (t) => `
         <span class="marquee-item">
           <span class="marquee-dot" aria-hidden="true"></span>${t}
-        </span>`)
-      .join('');
-
+        </span>`,
+    )
+    .join("");
 
   /* ══════════════════════════════════════
      STRIP CARDS
   ══════════════════════════════════════ */
   const cards = [
-    { label: 'CA en attente',         val: '4 200', unit: '€' },
-    { label: 'Payé ce mois',          val: '8 750', unit: '€' },
-    { label: 'En litige',             val: '1 800', unit: '€' },
-    { label: 'Relances actives',      val: '3',     unit: ''  },
-    { label: 'Taux récupération',     val: '87',    unit: '%' },
-    { label: 'Taux journalier',       val: '480',   unit: '€' },
-    { label: 'Factures envoyées',     val: '24',    unit: ''  },
-    { label: 'Jours moyens paiement', val: '18',    unit: 'j' },
+    { label: "CA en attente", val: "4 200", unit: "€" },
+    { label: "Payé ce mois", val: "8 750", unit: "€" },
+    { label: "En litige", val: "1 800", unit: "€" },
+    { label: "Relances actives", val: "3", unit: "" },
+    { label: "Taux récupération", val: "87", unit: "%" },
+    { label: "Taux journalier", val: "480", unit: "€" },
+    { label: "Factures envoyées", val: "24", unit: "" },
+    { label: "Jours moyens paiement", val: "18", unit: "j" },
   ];
 
   const gradients = [
-    'rgba(107,157,232,.3)',
-    'rgba(232,107,95,.3)',
-    'rgba(139,114,212,.3)',
+    "rgba(107,157,232,.3)",
+    "rgba(232,107,95,.3)",
+    "rgba(139,114,212,.3)",
   ];
 
-  document.getElementById('stripTrack').innerHTML =
-    [...cards, ...cards]
-      .map((c, i) => `
+  document.getElementById("stripTrack").innerHTML = [...cards, ...cards]
+    .map(
+      (c, i) => `
         <div class="strip-card">
           <div class="strip-card-bg"
                style="background: linear-gradient(135deg, ${gradients[i % 3]} 0%, transparent 100%)"
@@ -115,44 +116,89 @@
           </div>
           <div class="strip-card-label">${c.label}</div>
           <div class="strip-card-val">${c.val}<span class="unit">${c.unit}</span></div>
-        </div>`)
-      .join('');
-
+        </div>`,
+    )
+    .join("");
 
   /* ══════════════════════════════════════
      SMOOTH SCROLL — délégation unique
   ══════════════════════════════════════ */
-  document.addEventListener('click', e => {
-    const btn = e.target.closest('[data-scroll]');
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest("[data-scroll]");
     if (!btn) return;
     const target = document.getElementById(btn.dataset.scroll);
-    target?.scrollIntoView({ behavior: 'smooth' });
+    target?.scrollIntoView({ behavior: "smooth" });
   });
 
-
   /* ══════════════════════════════════════
-     WAITLIST
-  ══════════════════════════════════════ */
+   WAITLIST
+══════════════════════════════════════ */
   const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const form = document.getElementById("waitlistForm");
+  const input = document.getElementById("emailInput");
+  const row = form.querySelector(".waitlist-row");
+  const successEl = document.getElementById("wlSuccess");
+  const submitBtn = form.querySelector(".btn-submit");
 
-  document.getElementById('waitlistForm').addEventListener('submit', e => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const input = document.getElementById('emailInput');
-    const row   = input.closest('.waitlist-row');
+    const email = input.value.trim();
 
-    if (!EMAIL_RE.test(input.value.trim())) {
-      row.style.borderColor = 'var(--coral)';
+    // Validation côté client
+    if (!EMAIL_RE.test(email)) {
+      row.style.borderColor = "var(--coral)";
       input.focus();
-      setTimeout(() => (row.style.borderColor = ''), 1500);
+      setTimeout(() => (row.style.borderColor = ""), 1500);
       return;
     }
 
-    row.style.display = 'none';
-    document.getElementById('wlSuccess').style.display = 'block';
+    submitBtn.textContent = "...";
+    submitBtn.disabled = true;
 
-    // TODO: envoyer l'email à ton backend
-    // fetch('/api/waitlist', { method: 'POST', body: JSON.stringify({ email: input.value.trim() }) });
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      // On récupère le texte brut pour éviter le crash si body vide
+      const text = await res.text();
+      let data = null;
+
+      if (text) {
+        try {
+          data = JSON.parse(text);
+        } catch {
+          // Si ce n'est pas du JSON valide, on laisse data = null
+        }
+      }
+
+      if (!res.ok) {
+        const message =
+          (data && data.error) || `Erreur serveur (${res.status})`;
+        throw new Error(message);
+      }
+
+      // Succès
+      row.style.display = "none";
+      successEl.textContent =
+        "✓ Inscription confirmée — on te tient au courant.";
+      successEl.style.color = "#6ddba8";
+      successEl.style.display = "block";
+    } catch (err) {
+      row.style.borderColor = "var(--coral)";
+      successEl.textContent = `✗ ${err.message}`;
+      successEl.style.color = "var(--coral)";
+      successEl.style.display = "block";
+
+      setTimeout(() => {
+        row.style.borderColor = "";
+      }, 2000);
+    } finally {
+      submitBtn.textContent = "Rejoindre →";
+      submitBtn.disabled = false;
+    }
   });
-
 })();
