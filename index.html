@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flexo — Tes impayés n'ont plus d'avenir</title>
+  <title>Flexo — Reprends ton argent</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;0,900;1,200;1,300;1,700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
@@ -32,7 +32,9 @@
     <a class="nav-link" href="#escalade">Recouvrement</a>
     <a class="nav-link" href="#produit">Produit</a>
     <a class="nav-link" href="#tarifs">Tarifs</a>
-    <button type="button" class="btn-primary nav-btn" data-scroll="waitlist">Accès gratuit →</button>
+    <button type="button" class="btn-primary nav-btn" data-scroll="waitlist">
+      Accès gratuit →
+    </button>
   </div>
 </nav>
 
@@ -43,31 +45,44 @@
   <div class="hero-meta" aria-hidden="true">
     <div class="hero-meta-item">Waitlist ouverte</div>
     <div class="hero-meta-line"></div>
-    <div class="hero-meta-item">Lancement de la Beta Avril 2026</div>
+    <div class="hero-meta-item">Lancement Q3 2026</div>
   </div>
 
   <div class="hero-content">
     <div class="hero-eyebrow r">Facturation · Recouvrement · Escalade juridique</div>
     <h1 class="r delay-1">
-      Tes<br>
-      <span class="light">imp</span>ayés<br>
-      n'ont <span class="coral">plus</span><br>
-      d'avenir.
+      Ils ont<br>
+      <span class="light">pris</span><br>
+      ton travail.<br>
+      <span class="coral">Reprends</span><br>
+      ton argent.
     </h1>
     <div class="hero-bottom r delay-3">
-      <p class="hero-sub">Le seul outil de facturation qui automatise l'escalade complète — de la relance amicale jusqu'au tribunal.</p>
+      <p class="hero-sub">
+        Flexo automatise l'escalade complète — de la relance amicale
+        jusqu'au tribunal. Toi tu crées. Flexo récupère.
+      </p>
       <div class="hero-actions">
-        <form class="hero-waitlist-form" id="heroWaitlistForm" novalidate>
-  <div class="hero-waitlist-row">
-    <input type="email" id="heroEmailInput" placeholder="ton@email.fr" autocomplete="email" aria-label="Adresse e-mail"/>
-    <button type="submit" class="btn-primary btn-fill">Réserver ma place →</button>
-  </div>
-  <p class="hero-wl-note">Gratuit · Pas de spam · 47 freelances inscrits</p>
-  <p class="wl-success hero-wl-success" id="heroWlSuccess" role="status">✓ Inscription confirmée !</p>
-</form>
-        <button type="button" class="btn-line" data-scroll="escalade">Voir comment ça marche</button>
+        <button type="button" class="btn-primary btn-fill" data-scroll="waitlist">
+          Réserver ma place →
+        </button>
+        <button type="button" class="btn-line" data-scroll="escalade">
+          Voir comment ça marche
+        </button>
       </div>
     </div>
+
+    <!-- Formulaire hero -->
+    <form class="hero-waitlist-form r delay-5" id="heroWaitlistForm" novalidate>
+      <div class="hero-waitlist-row">
+        <input type="email" id="heroEmailInput" placeholder="ton@email.fr" autocomplete="email" aria-label="Adresse e-mail"/>
+        <button type="submit" class="btn-primary btn-fill">Accès anticipé →</button>
+      </div>
+      <p class="hero-wl-note">Gratuit · Pas de spam · 47 freelances inscrits</p>
+      <p class="wl-success hero-wl-success" id="heroWlSuccess" role="status">
+        ✓ Inscription confirmée — on te tient au courant.
+      </p>
+    </form>
   </div>
 </section>
 
@@ -79,12 +94,19 @@
 <!-- INTRO EDITORIAL -->
 <section class="intro-section r">
   <p class="intro-text">
-    En moyenne, un freelance créatif perd <strong>6 000 € par an</strong> en impayés —
-    non pas faute d'avoir travaillé, mais faute d'<em>outils pour aller chercher son argent.</em>
-    Flexo <strong>automatise l'escalade complète.</strong>
-    Toi tu crées, <strong>Flexo récupère.</strong>
+    Le client qui ne répond plus. La facture qui traîne.
+    La gêne qui s'installe.<br><br>
+    Tu as fait le travail. Tu as livré. Tu mérites d'être payé.<br><br>
+    Mais au moment de relancer, tu hésites —
+    <em>peur de paraître agressif, de perdre le client, d'avoir l'air dans le besoin.</em><br><br>
+    Le client le sait. Et il en profite.<br><br>
+    <strong>Flexo retire l'émotion de l'équation.</strong>
+    Ce n'est plus toi qui insistes. C'est un système.
+    <strong>Et les systèmes, on ne les ignore pas.</strong>
   </p>
-  <div class="intro-byline">Construit par un ex-freelance graphiste, pour les freelances créatifs</div>
+  <div class="intro-byline">
+    Fait par un freelance qui en avait assez de laisser son argent sur la table
+  </div>
 </section>
 
 <!-- STATS -->
@@ -92,16 +114,25 @@
   <div class="section-label">Le problème en chiffres</div>
   <div class="stats-strip">
     <div class="stat-block">
-      <div class="stat-big">12<span class="unit">%</span></div>
-      <div class="stat-sub">du chiffre d'affaires perdu chaque année en impayés</div>
+      <div class="stat-big">6<span class="unit">k€</span></div>
+      <div class="stat-sub">
+        perdus en moyenne par an — non pas faute d'avoir travaillé,
+        mais faute d'avoir osé insister
+      </div>
     </div>
     <div class="stat-block">
-      <div class="stat-big">20<span class="unit">h</span></div>
-      <div class="stat-sub">perdues à relancer des clients chaque mois</div>
+      <div class="stat-big">73<span class="unit">%</span></div>
+      <div class="stat-sub">
+        des freelances abandonnent leurs impayés sous 500 €
+        parce que la procédure leur semble trop complexe
+      </div>
     </div>
     <div class="stat-block">
       <div class="stat-big">0<span class="unit">€</span></div>
-      <div class="stat-sub">récupéré sans outil adapté — les impayés meurent en silence</div>
+      <div class="stat-sub">
+        c'est ce que coûte à un client de ne pas te payer —
+        si tu n'as pas de système derrière toi
+      </div>
     </div>
   </div>
 </section>
@@ -112,13 +143,17 @@
     <div>
       <div class="section-label">Chaîne d'escalade</div>
       <div class="esc-big-title">
-        De la<br>
-        fac<span class="light">ture</span><br>
-        au <span class="coral">trib</span>unal.
+        Cin<span class="light">q</span><br>
+        ni<span class="light">veaux.</span><br>
+        <span class="coral">Zéro</span><br>
+        hésitation.
       </div>
     </div>
     <p class="esc-intro-copy r delay-1">
-      Flexo enchaîne automatiquement cinq niveaux d'escalade — sans que tu aies à rédiger une seule ligne. Chaque étape est documentée, validée juridiquement, et déclenchée au bon moment.
+      Avant Flexo, chaque relance était une décision émotionnelle.
+      Maintenant c'est un système. Automatique. Documenté. Juridiquement
+      validé. Le client sait que derrière toi, il y a une mécanique
+      qu'il ne peut pas ignorer.
     </p>
   </div>
 
@@ -128,7 +163,10 @@
       <div class="esc-index">01.</div>
       <div>
         <div class="esc-name">Facture envoyée</div>
-        <div class="esc-desc">PDF pro généré automatiquement. Numérotation, TVA, mentions légales. Envoi direct depuis Flexo.</div>
+        <div class="esc-desc">
+          PDF professionnel généré en un clic. Le client reçoit quelque chose
+          de sérieux. Le ton est donné dès le départ.
+        </div>
       </div>
       <span class="esc-pill pill-a">Auto</span>
     </div>
@@ -137,7 +175,10 @@
       <div class="esc-index">02.</div>
       <div>
         <div class="esc-name">Relances progressives</div>
-        <div class="esc-desc">5 niveaux calibrés. Rappel amical → relance ferme → ultimatum. Ton et timing gérés par Flexo.</div>
+        <div class="esc-desc">
+          Rappel amical → relance ferme → ultimatum.
+          Calibrées. Espacées. Jamais agressives, jamais ignorables.
+        </div>
       </div>
       <span class="esc-pill pill-a">Auto</span>
     </div>
@@ -146,7 +187,10 @@
       <div class="esc-index">03.</div>
       <div>
         <div class="esc-name">Mise en demeure</div>
-        <div class="esc-desc">Lettre officielle validée par avocat. Pénalités légales automatiques. Envoi LRAR intégré.</div>
+        <div class="esc-desc">
+          Lettre officielle validée par avocat. Pénalités légales automatiques.
+          Le client comprend que ce n'est plus toi. C'est la loi.
+        </div>
       </div>
       <span class="esc-pill pill-j">Juridique</span>
     </div>
@@ -155,7 +199,10 @@
       <div class="esc-index">04.</div>
       <div>
         <div class="esc-name">Dossier injonction de payer</div>
-        <div class="esc-desc">Cerfa pré-rempli, dossier complet prêt à déposer au tribunal de commerce. Un clic suffit.</div>
+        <div class="esc-desc">
+          Cerfa pré-rempli, prêt à déposer. La plupart des clients paient ici.
+          Parce qu'ils réalisent que tu iras jusqu'au bout.
+        </div>
       </div>
       <span class="esc-pill pill-t">Tribunal</span>
     </div>
@@ -164,7 +211,10 @@
       <div class="esc-index">05.</div>
       <div>
         <div class="esc-name">Huissier de justice</div>
-        <div class="esc-desc">Transmission directe du dossier. Exécution forcée si nécessaire. On va jusqu'au bout, toujours.</div>
+        <div class="esc-desc">
+          Exécution forcée si nécessaire. Parce qu'on avait dit qu'on irait
+          jusqu'au bout. On y va.
+        </div>
       </div>
       <span class="esc-pill pill-t">Exécution</span>
     </div>
@@ -183,23 +233,38 @@
   <div class="features-split r delay-1">
     <div class="feat-block">
       <div class="feat-num">01</div>
-      <div class="feat-name">Facturation pro</div>
-      <div class="feat-desc">PDF branded en 3 clics. Numérotation, TVA, mentions légales auto. Pensé pour les créatifs, pas les comptables.</div>
+      <div class="feat-name">Facturation sans friction</div>
+      <div class="feat-desc">
+        PDF branded en 3 clics. Parce que plus vite tu envoies la facture,
+        plus vite tu es payé. Et plus elle est professionnelle,
+        moins elle est ignorée.
+      </div>
     </div>
     <div class="feat-block">
       <div class="feat-num">02</div>
       <div class="feat-name">Mini-compta URSSAF</div>
-      <div class="feat-desc">Livre des recettes automatique, calcul des charges, alerte plafond 77K€. Ta trésorerie en temps réel.</div>
+      <div class="feat-desc">
+        Livre des recettes auto, calcul des charges, alerte plafond 77K€.
+        Tu sais exactement où tu en es. À tout moment. Sans Excel.
+      </div>
     </div>
     <div class="feat-block">
       <div class="feat-num">03</div>
       <div class="feat-name">Dashboard financier</div>
-      <div class="feat-desc">CA réel vs projeté, taux journalier moyen, saisonnalité. La vérité de ton activité, sans Excel.</div>
+      <div class="feat-desc">
+        CA réel vs projeté. Taux journalier. Saisonnalité.
+        La vérité de ton activité — pas la version rassurante
+        que tu te racontes le soir.
+      </div>
     </div>
     <div class="feat-block">
       <div class="feat-num">04</div>
       <div class="feat-name">Legal Shield</div>
-      <div class="feat-desc">Templates juridiques validés par avocat. Mise en demeure, injonction de payer, CGV anti-retard. 100% automatique.</div>
+      <div class="feat-desc">
+        Mise en demeure, injonction, CGV anti-retard — validés par avocat.
+        Le genre de protection que seules les grandes boîtes avaient.
+        Maintenant c'est pour toi.
+      </div>
     </div>
   </div>
 </section>
@@ -208,7 +273,8 @@
 <section class="quote-section r">
   <div class="quote-label">Pourquoi Flexo</div>
   <blockquote class="quote-text">
-    Il n'y a pas de raison qu'un créatif perde <strong>6 000 €</strong> parce qu'il n'ose pas insister. Flexo ose pour toi.
+    Le client ne paie pas parce qu'il sait que tu n'iras pas au tribunal
+    pour 1 500 €. <strong>Flexo lui prouve qu'il a tort.</strong>
   </blockquote>
 </section>
 
@@ -271,19 +337,23 @@
 <section class="cta-wrap" id="waitlist">
   <div class="cta-bg-img" aria-hidden="true"></div>
   <div class="cta-inner">
-    <div class="cta-overline r">Accès anticipé — Waitlist ouverte</div>
+    <div class="cta-overline r">50 places · Accès fondateur · Prix gelé à vie</div>
     <h2 class="cta-heading r delay-1">
-      Prêt à être<br>
-      <span class="light">enfin</span><br>
-      payé ?
+      Fini<br>
+      <span class="light">de</span><br>
+      laisser.
     </h2>
     <form class="waitlist-form" id="waitlistForm" novalidate>
       <div class="waitlist-row r delay-2">
         <input type="email" id="emailInput" placeholder="ton@email.fr" autocomplete="email" aria-label="Adresse e-mail"/>
-        <button type="submit" class="btn-primary btn-submit">Je veux être payé →</button>
+        <button type="submit" class="btn-primary btn-submit">
+          Je veux être payé →
+        </button>
       </div>
-      <p class="wl-note r delay-4">Pas de spam. Désabonnement en un clic.</p>
-      <p class="wl-success" id="wlSuccess" role="status">✓ Inscription confirmée — on te tient au courant.</p>
+      <p class="wl-note r delay-4">Gratuit · Pas de CB · Pas de spam</p>
+      <p class="wl-success" id="wlSuccess" role="status">
+        ✓ Inscription confirmée — on te tient au courant.
+      </p>
     </form>
     <div class="wl-avatars r delay-5">
       <div class="avs" aria-hidden="true">
@@ -300,14 +370,17 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-statement">
-    Ton argent<br>
-    <span class="light">te revient</span><br>
-    tou<span class="coral">jours.</span>
+    Ton travail<br>
+    <span class="light">a de la</span><br>
+    va<span class="coral">leur.</span>
   </div>
   <div class="footer-cols">
     <div>
       <div class="footer-brand">FL<span>X</span>O</div>
-      <p class="footer-tagline">Le seul outil de facturation qui va au tribunal pour récupérer ton argent. Fait par un freelance, pour les freelances.</p>
+      <p class="footer-tagline">
+        Le seul outil qui va au tribunal pour récupérer ton argent.
+        Fait par un freelance, pour les freelances.
+      </p>
     </div>
     <div class="footer-col">
       <h5>Produit</h5>
@@ -321,8 +394,9 @@
     <div class="footer-col">
       <h5>Contact</h5>
       <ul>
-        <li><a href="mailto:yvan.trouillet@gmail.com">contact@flexo.fr</a></li>
-        <li><a href="https://www.linkedin.com/in/yvan-trouillet">LinkedIn</a></li>
+        <li><a href="mailto:contact@flexo.fr">contact@flexo.fr</a></li>
+        <li><a href="#" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="#" rel="noopener noreferrer">Twitter / X</a></li>
       </ul>
     </div>
   </div>
