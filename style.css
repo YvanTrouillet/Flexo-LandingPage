@@ -1154,11 +1154,11 @@ footer {
   }
 
   .hero {
-    min-height: 620px;
+    min-height: 100dvh;
   }
 
   .hero-content {
-    justify-content: center;
+    justify-content: flex-end;
     padding: 0 6vw 9vh;
   }
 
