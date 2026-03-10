@@ -17,8 +17,6 @@ export default async function handler(req: any, res: any) {
 
   const API_KEY = process.env.BREVO_API_KEY;
   const LIST_ID = process.env.BREVO_LIST_ID;
-  const SENDER_EMAIL = process.env.BREVO_SENDER_EMAIL;
-  const SENDER_NAME = process.env.BREVO_SENDER_NAME;
 
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
