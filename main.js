@@ -36,6 +36,53 @@
       }, 350);
     }
   }, 55);
+  
+  /* ── HERO WAITLIST (même logique que le formulaire principal) ── */
+document.getElementById('heroWaitlistForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const input   = document.getElementById('heroEmailInput');
+  const row     = input.closest('.hero-waitlist-row');
+  const success = document.getElementById('heroWlSuccess');
+  const btn     = e.target.querySelector('button[type="submit"]');
+  const email   = input.value.trim();
+
+  if (!EMAIL_RE.test(email)) {
+    row.style.borderColor = 'var(--coral)';
+    input.focus();
+    setTimeout(() => (row.style.borderColor = ''), 1500);
+    return;
+  }
+
+  btn.textContent = '...';
+  btn.disabled = true;
+
+  try {
+    const res  = await fetch('/api/waitlist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const text = await res.text();
+    const data = text ? JSON.parse(text) : null;
+    if (!res.ok) throw new Error((data && data.error) || `Erreur ${res.status}`);
+
+    row.style.display = 'none';
+    success.style.display = 'block';
+
+    // Synchronise aussi le formulaire du bas si visible
+    document.getElementById('emailInput').value = email;
+
+  } catch (err) {
+    row.style.borderColor = 'var(--coral)';
+    success.textContent   = `✗ ${err.message}`;
+    success.style.color   = 'var(--coral)';
+    success.style.display = 'block';
+  } finally {
+    btn.textContent = 'Accès anticipé →';
+    btn.disabled = false;
+  }
+});
+
 
   /* ══════════════════════════════════════
      SCROLL REVEAL
