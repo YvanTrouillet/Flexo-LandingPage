@@ -112,17 +112,17 @@ document.getElementById('heroWaitlistForm')?.addEventListener('submit', async (e
      MARQUEE
   ══════════════════════════════════════ */
   const mItems = [
-    "Facture envoyée",
-    "Relance J+8",
-    "Relance J+15",
-    "Mise en demeure J+30",
-    "Injonction de payer J+45",
-    "Huissier J+60",
-    "Legal Shield",
-    "Mini-compta URSSAF",
-    "Dashboard financier",
-    "Impayés récupérés",
-  ];
+  'Toi tu crées',
+  'Flexo récupère',
+  'Implacable',
+  'Invulnérable',
+  'Justice automatique',
+  'Relance J+8',
+  'Mise en demeure J+30',
+  'Injonction J+45',
+  'Huissier J+60',
+  'Ton argent te revient',
+];
 
   document.getElementById("marqueeTrack").innerHTML = [...mItems, ...mItems]
     .map(
