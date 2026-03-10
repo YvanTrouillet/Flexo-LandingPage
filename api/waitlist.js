@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     }
 
     const API_KEY = process.env.BREVO_API_KEY;
-    const LIST_ID = parseInt(process.env.BREVO_LIST_ID, 10);
+    const LIST_ID = Number(process.env.BREVO_LIST_ID, 10);
 
     const headers = {
       "Content-Type": "application/json",
