@@ -13,9 +13,6 @@ export default async function handler(req, res) {
 
     const API_KEY = process.env.BREVO_API_KEY;
     const LIST_ID = 3;
-    console.log(process.env.BREVO_LIST_ID);
-    console.log(Number(process.env.BREVO_LIST_ID));
-    console.log(typeof Number(process.env.BREVO_LIST_ID));
 
     const headers = {
       "Content-Type": "application/json",
