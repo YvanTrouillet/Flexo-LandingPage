@@ -281,7 +281,7 @@ h1 .coral {
 .hero-bottom {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   margin-top: 40px;
   padding-top: 28px;
   border-top: 1px solid var(--border);
@@ -412,7 +412,7 @@ h1 .coral {
 }
 
 .intro-text {
-  font-size: clamp(26px, 3.8vw, 54px);
+  font-size: clamp(26px, 3.8vw, 40px);
   font-weight: 300;
   line-height: 1.25;
   letter-spacing: -0.02em;
@@ -1115,30 +1115,55 @@ footer {
   transition-delay: 0.4s;
 }
 
-.hero-waitlist-form { margin-top: 20px; max-width: 440px; }
+.hero-waitlist-form {
+  flex: 1;
+  margin-top: 20px;
+  max-width: 440px;
+}
 
 .hero-waitlist-row {
   display: flex;
-  border: 1px solid rgba(242,237,232,.25);
+  border: 1px solid rgba(242, 237, 232, 0.25);
   transition: border-color var(--t1);
 }
 .hero-waitlist-row input {
-  flex: 1; background: rgba(8,8,9,.4); border: none;
-  padding: 14px 18px; font-size: 13px;
-  color: var(--white); outline: none;
+  flex: 1;
+  background: rgba(8, 8, 9, 0.4);
+  border: none;
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--white);
+  outline: none;
   backdrop-filter: blur(8px);
 }
-.hero-waitlist-row input::placeholder { color: var(--muted); }
-.hero-waitlist-row .btn-fill { padding: 14px 22px; white-space: nowrap; }
-.hero-wl-note {
-  font-size: 10px; font-weight: 500; letter-spacing: .1em;
-  text-transform: uppercase; color: rgba(242,237,232,.22); margin-top: 10px;
+.hero-waitlist-row input::placeholder {
+  color: var(--muted);
 }
-.hero-wl-success { display: none; margin-top: 12px; }
+.hero-waitlist-row .btn-fill {
+  padding: 14px 22px;
+  white-space: nowrap;
+}
+.hero-wl-note {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(242, 237, 232, 0.22);
+  margin-top: 10px;
+}
+.hero-wl-success {
+  display: none;
+  margin-top: 12px;
+}
 
 @media (max-width: 600px) {
-  .hero-waitlist-row { flex-direction: column; }
-  .hero-waitlist-row .btn-fill { width: 100%; text-align: center; }
+  .hero-waitlist-row {
+    flex-direction: column;
+  }
+  .hero-waitlist-row .btn-fill {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 /* ══════════════════════════════════════
