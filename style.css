@@ -1117,12 +1117,14 @@ footer {
 
 .hero-waitlist-form {
   flex: 1;
+  width: 100%;
   margin-top: 20px;
   max-width: 440px;
 }
 
 .hero-waitlist-row {
   display: flex;
+  width: 100%;
   border: 1px solid rgba(242, 237, 232, 0.25);
   transition: border-color var(--t1);
 }
