@@ -329,8 +329,8 @@ function tickSpots() {
   );
 
   // ── Paramètres — ajuste ici pour plus/moins d'intensité ──
-  const PERSPECTIVE  = 1000;  // px — plus petit = arc plus prononcé
-  const MAX_ROTATE   = 2.5;   // degrés max — 2 = subtil, 4 = expressif
+  const PERSPECTIVE  = 600;  // px — plus petit = arc plus prononcé
+  const MAX_ROTATE   = 4;   // degrés max — 2 = subtil, 4 = expressif
   const LERP_SPEED   = 0.075; // vitesse de retour — 0.05 lent, 0.12 rapide
   const DAMPING      = 22;    // sensibilité scroll — plus grand = moins sensible
   const SCALE_FACTOR = 0.0015;// légère compression au pic de l'arc
