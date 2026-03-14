@@ -193,17 +193,17 @@
   ══════════════════════════════════════ */
   // ← AJOUTÉ — simule une réduction progressive des places disponibles
   const founderSpotsEls = document.querySelectorAll("#founderSpots");
-  let spots = 47;
+  let spots = 5; // ← 5 places restantes sur 20
 
-  function tickSpots() {
-    const delay = 45000 + Math.random() * 90000; // toutes les 45-135 secondes
-    setTimeout(() => {
-      if (spots <= 1) return;
-      spots--;
-      founderSpotsEls.forEach((el) => (el.textContent = spots));
-      tickSpots();
-    }, delay);
-  }
+function tickSpots() {
+  const delay = 90000 + Math.random() * 180000; // ← plus lent — 1,5 à 4,5 min — crédible sur 20 places
+  setTimeout(() => {
+    if (spots <= 1) return;
+    spots--;
+    founderSpotsEls.forEach((el) => (el.textContent = spots));
+    tickSpots();
+  }, delay);
+}
   tickSpots();
 
   /* ══════════════════════════════════════
