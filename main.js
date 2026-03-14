@@ -319,98 +319,70 @@ function tickSpots() {
   });
   
   /* ══════════════════════════════════════
-   SCROLL ARC — déformation en arc directionnel
+   SCROLL ARC — skew directionnel sur wrapper
 ══════════════════════════════════════ */
 (function initScrollArc() {
 
-  const sections = document.querySelectorAll(
-    ".hero, .marquee, .intro-section, .section, " +
-    ".quote-section, .photo-strip, .cta-wrap, footer"
-  );
+  // Désactive sur mobile
+  if (window.innerWidth <= 900) return;
 
-  // ── Paramètres — ajuste ici pour plus/moins d'intensité ──
-  const PERSPECTIVE  = 600;  // px — plus petit = arc plus prononcé
-  const MAX_ROTATE   = 4;   // degrés max — 2 = subtil, 4 = expressif
-  const LERP_SPEED   = 0.075; // vitesse de retour — 0.05 lent, 0.12 rapide
-  const DAMPING      = 22;    // sensibilité scroll — plus grand = moins sensible
-  const SCALE_FACTOR = 0.0015;// légère compression au pic de l'arc
+  const wrapper = document.getElementById("skew-wrapper");
+  if (!wrapper) return;
 
-  let lastY    = window.scrollY;
-  let velocity = 0;
-  let rafId    = null;
+  // ── Paramètres ──────────────────────────
+  const MAX_SKEW    = 8;     // degrés max — commence à 8, monte jusqu'à 15 si tu veux plus
+  const LERP_IN     = 0.1;   // vitesse d'entrée dans l'effet
+  const LERP_OUT    = 0.06;  // vitesse de retour à 0 — plus lent = traîne plus longtemps
+  const DAMPING     = 10;    // sensibilité — 6 = très réactif, 15 = nécessite un scroll fort
+  // ────────────────────────────────────────
 
-  // Map : chaque section a son propre état interpolé
-  const stateMap = new Map();
-  sections.forEach((el) => stateMap.set(el, { current: 0, target: 0 }));
+  let lastY       = window.scrollY;
+  let currentSkew = 0;
+  let targetSkew  = 0;
+  let rafId       = null;
 
-  function lerp(a, b, t) {
-    return a + (b - a) * t;
-  }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
 
-  function clamp(val, min, max) {
-    return Math.max(min, Math.min(max, val));
-  }
-
-  // Calcule la vélocité à chaque event scroll
   window.addEventListener("scroll", () => {
-    const currentY = window.scrollY;
-    velocity = currentY - lastY;
-    lastY = currentY;
+    const y   = window.scrollY;
+    const vel = y - lastY;
+    lastY     = y;
+
+    // Scroll bas → skew négatif (incline vers l'avant)
+    // Scroll haut → skew positif (incline vers l'arrière)
+    targetSkew = clamp(-vel / DAMPING, -MAX_SKEW, MAX_SKEW);
+
     if (!rafId) rafId = requestAnimationFrame(tick);
   }, { passive: true });
 
   function tick() {
-    let anyActive = false;
+    // Entrée rapide, retour lent — effet "élastique"
+    const lerpSpeed = Math.abs(targetSkew) > Math.abs(currentSkew)
+      ? LERP_IN
+      : LERP_OUT;
 
-    sections.forEach((el) => {
-      const rect = el.getBoundingClientRect();
+    currentSkew = lerp(currentSkew, targetSkew, lerpSpeed);
+    targetSkew  = lerp(targetSkew, 0, LERP_OUT);
 
-      // Ignore les sections hors du viewport
-      if (rect.bottom < -100 || rect.top > window.innerHeight + 100) return;
-
-      const state = stateMap.get(el);
-
-      // La cible est proportionnelle à la vélocité, inversée pour l'arc directionnel
-      // Scroll bas → arc vers l'avant (rotateX positif vu de l'utilisateur)
-      state.target = clamp(-velocity / DAMPING, -MAX_ROTATE, MAX_ROTATE);
-
-      // Interpolation douce vers la cible, puis retour à 0
-      state.current = lerp(state.current, state.target, LERP_SPEED);
-      state.target  = lerp(state.target, 0, LERP_SPEED);
-
-      const angle  = state.current;
-      const absAng = Math.abs(angle);
-
-      if (absAng < 0.005) {
-        // Réinitialise proprement
-        el.style.transform = "";
-        return;
-      }
-
-      // Scale légèrement compressé au pic pour renforcer l'impression de vitesse
-      const scale = 1 - absAng * SCALE_FACTOR;
-
-      // perspective() dans transform = arc sur l'élément lui-même
-      el.style.transform =
-        `perspective(${PERSPECTIVE}px) rotateX(${angle.toFixed(4)}deg) scaleY(${scale.toFixed(5)})`;
-
-      if (absAng > 0.01 || Math.abs(state.target) > 0.01) anyActive = true;
-    });
-
-    // Vélocité se dissipe naturellement
-    velocity = lerp(velocity, 0, 0.1);
-
-    if (anyActive || Math.abs(velocity) > 0.3) {
-      rafId = requestAnimationFrame(tick);
-    } else {
-      // Tout réinitialiser proprement
-      sections.forEach((el) => (el.style.transform = ""));
+    if (Math.abs(currentSkew) < 0.005) {
+      // Réinitialise proprement
+      wrapper.style.transform = "";
       rafId = null;
+      return;
     }
+
+    // skewY = déformation diagonale visible immédiatement
+    // scaleY = légère compression qui renforce l'impression de vitesse
+    const absSkew = Math.abs(currentSkew);
+    const scaleY  = 1 - absSkew * 0.004;
+
+    wrapper.style.transform =
+      `skewY(${currentSkew.toFixed(4)}deg) scaleY(${scaleY.toFixed(5)})`;
+
+    rafId = requestAnimationFrame(tick);
   }
 
 })();
-
-
 
 })();
