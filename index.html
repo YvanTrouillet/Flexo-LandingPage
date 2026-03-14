@@ -13,7 +13,7 @@
   </head>
   <body>
 
-    <!-- PRELOADER -->
+    <!-- PRELOADER — hors du wrapper, ne doit pas être déformé -->
     <div
       id="preloader"
       role="progressbar"
@@ -34,450 +34,454 @@
       </div>
     </div>
 
-    <!-- NAV -->
-    <nav aria-label="Navigation principale">
-      <a class="nav-logo" href="#">FL<span class="accent">X</span>O</a>
-      <div class="nav-right">
-        <a class="nav-link" href="#escalade">Recouvrement</a>
-        <a class="nav-link" href="#produit">Produit</a>
-        <a class="nav-link" href="#tarifs">Tarifs</a>
-        <button
-          type="button"
-          class="btn-primary nav-btn"
-          data-scroll="waitlist"
-        >
-          Accès anticipé →
-        </button>
-      </div>
-    </nav>
+    <!-- SKEW WRAPPER — tout le contenu visible ici -->
+    <div id="skew-wrapper">
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
-
-      <div class="hero-meta" aria-hidden="true">
-        <div class="hero-meta-item">Waitlist ouverte</div>
-        <div class="hero-meta-line"></div>
-        <div class="hero-meta-item">Lancement Avril 2026</div>
-      </div>
-
-      <div class="hero-content">
-        <div class="hero-eyebrow r">
-          Facturation · Recouvrement · Escalade juridique
-        </div>
-        <h1 class="r delay-1">
-          Ils ont
-          <span class="light">pris</span><br />
-          ton travail.<br />
-          <span class="coral">Reprends</span><br />
-          ton argent.
-        </h1>
-        <div class="hero-bottom r delay-3">
-          <p class="hero-sub">
-            Flexo automatise l'escalade complète — de la relance amicale
-            jusqu'au tribunal. Toi tu crées. Flexo récupère.
-          </p>
-          <form
-            class="hero-waitlist-form r delay-5"
-            id="heroWaitlistForm"
-            novalidate
+      <!-- NAV -->
+      <nav aria-label="Navigation principale">
+        <a class="nav-logo" href="#">FL<span class="accent">X</span>O</a>
+        <div class="nav-right">
+          <a class="nav-link" href="#escalade">Recouvrement</a>
+          <a class="nav-link" href="#produit">Produit</a>
+          <a class="nav-link" href="#tarifs">Tarifs</a>
+          <button
+            type="button"
+            class="btn-primary nav-btn"
+            data-scroll="waitlist"
           >
-            <div class="hero-waitlist-row">
+            Accès anticipé →
+          </button>
+        </div>
+      </nav>
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+
+        <div class="hero-meta" aria-hidden="true">
+          <div class="hero-meta-item">Waitlist ouverte</div>
+          <div class="hero-meta-line"></div>
+          <div class="hero-meta-item">Lancement Avril 2026</div>
+        </div>
+
+        <div class="hero-content">
+          <div class="hero-eyebrow r">
+            Facturation · Recouvrement · Escalade juridique
+          </div>
+          <h1 class="r delay-1">
+            Ils ont
+            <span class="light">pris</span><br />
+            ton travail.<br />
+            <span class="coral">Reprends</span><br />
+            ton argent.
+          </h1>
+          <div class="hero-bottom r delay-3">
+            <p class="hero-sub">
+              Flexo automatise l'escalade complète — de la relance amicale
+              jusqu'au tribunal. Toi tu crées. Flexo récupère.
+            </p>
+            <form
+              class="hero-waitlist-form r delay-5"
+              id="heroWaitlistForm"
+              novalidate
+            >
+              <div class="hero-waitlist-row">
+                <input
+                  type="email"
+                  id="heroEmailInput"
+                  placeholder="ton@email.fr"
+                  autocomplete="email"
+                  aria-label="Adresse e-mail"
+                />
+                <button type="submit" class="btn-primary btn-fill">
+                  Accès anticipé →
+                </button>
+              </div>
+              <p class="hero-wl-note">
+                Gratuit · Pas de spam ·
+                <strong><span id="heroCount">47</span> freelances inscrits · 5 places fondateur restantes</strong>
+              </p>
+              <p
+                class="wl-success hero-wl-success"
+                id="heroWlSuccess"
+                role="status"
+              >
+                ✓ Inscription confirmée — on te tient au courant.
+              </p>
+            </form>
+            <div class="hero-actions">
+              <button type="button" class="btn-line" data-scroll="escalade">
+                Voir comment ça marche
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track" id="marqueeTrack"></div>
+      </div>
+
+      <!-- INTRO EDITORIAL -->
+      <section class="intro-section r">
+        <p class="intro-text">
+          Le client qui ne répond plus. La facture qui traîne. La gêne qui
+          s'installe.<br />
+          Tu as fait le travail. Tu as livré. Tu mérites d'être payé.<br />
+          Mais au moment de relancer, tu hésites —
+          <em>peur de paraître agressif, de perdre le client, d'avoir l'air dans le
+            besoin.</em><br />
+          Le client le sait. Et il en profite.<br />
+          <strong>Flexo retire l'émotion de l'équation.</strong>
+          Ce n'est plus toi qui insistes. C'est un système.
+          <strong>Et les systèmes, on ne les ignore pas.</strong>
+        </p>
+        <div class="intro-byline">
+          Fait par un freelance qui en avait assez de laisser son argent sur la table
+        </div>
+      </section>
+
+      <!-- STATS -->
+      <section class="section r">
+        <div class="section-label">Le problème en chiffres</div>
+        <div class="stats-strip">
+          <div class="stat-block">
+            <div class="stat-big">6<span class="unit">k€</span></div>
+            <div class="stat-sub">
+              perdus en moyenne par an — non pas faute d'avoir travaillé, mais
+              faute d'avoir osé insister
+            </div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-big">73<span class="unit">%</span></div>
+            <div class="stat-sub">
+              des freelances abandonnent leurs impayés sous 500 € parce que la
+              procédure leur semble trop complexe
+            </div>
+          </div>
+          <div class="stat-block">
+            <div class="stat-big">0<span class="unit">€</span></div>
+            <div class="stat-sub">
+              c'est ce que coûte à un client de ne pas te payer — si tu n'as pas
+              de système derrière toi
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ESCALADE -->
+      <section class="section" id="escalade">
+        <div class="escalade-heading r">
+          <div>
+            <div class="section-label">Chaîne d'escalade</div>
+            <div class="esc-big-title">
+              Cin<span class="light">q</span><br />
+              ni<span class="light">veaux.</span><br />
+              <span class="coral">Zéro</span><br />
+              hésitation.
+            </div>
+          </div>
+          <p class="esc-intro-copy r delay-1">
+            Avant Flexo, chaque relance était une décision émotionnelle.
+            Maintenant c'est un système. Automatique. Documenté. Juridiquement
+            validé. Le client sait que derrière toi, il y a une mécanique qu'il ne
+            peut pas ignorer.
+          </p>
+        </div>
+
+        <div class="esc-rows r delay-2">
+          <div class="esc-row">
+            <div class="esc-timing">J + 0</div>
+            <div class="esc-index">01.</div>
+            <div>
+              <div class="esc-name">Facture envoyée</div>
+              <div class="esc-desc">
+                PDF professionnel généré en un clic. Le client reçoit quelque
+                chose de sérieux. Le ton est donné dès le départ.
+              </div>
+            </div>
+            <span class="esc-pill pill-a">Auto</span>
+          </div>
+          <div class="esc-row">
+            <div class="esc-timing">J−3 → J+8</div>
+            <div class="esc-index">02.</div>
+            <div>
+              <div class="esc-name">Relances progressives</div>
+              <div class="esc-desc">
+                Rappel amical → relance ferme → ultimatum. Calibrées. Espacées.
+                Jamais agressives, jamais ignorables.
+              </div>
+            </div>
+            <span class="esc-pill pill-a">Auto</span>
+          </div>
+          <div class="esc-row">
+            <div class="esc-timing">J + 30</div>
+            <div class="esc-index">03.</div>
+            <div>
+              <div class="esc-name">Mise en demeure</div>
+              <div class="esc-desc">
+                Lettre officielle validée par avocat. Pénalités légales
+                automatiques. Le client comprend que ce n'est plus toi. C'est la loi.
+              </div>
+            </div>
+            <span class="esc-pill pill-j">Juridique</span>
+          </div>
+          <div class="esc-row">
+            <div class="esc-timing">J + 45</div>
+            <div class="esc-index">04.</div>
+            <div>
+              <div class="esc-name">Dossier injonction de payer</div>
+              <div class="esc-desc">
+                Cerfa pré-rempli, prêt à déposer. La plupart des clients paient
+                ici. Parce qu'ils réalisent que tu iras jusqu'au bout.
+              </div>
+            </div>
+            <span class="esc-pill pill-t">Tribunal</span>
+          </div>
+          <div class="esc-row">
+            <div class="esc-timing">J + 60</div>
+            <div class="esc-index">05.</div>
+            <div>
+              <div class="esc-name">Huissier de justice</div>
+              <div class="esc-desc">
+                Exécution forcée si nécessaire. Parce qu'on avait dit qu'on irait
+                jusqu'au bout. On y va.
+              </div>
+            </div>
+            <span class="esc-pill pill-t">Exécution</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- PHOTO STRIP -->
+      <div class="photo-strip r" aria-hidden="true">
+        <div class="strip-label">Ce que Flexo surveille pour toi</div>
+        <div class="strip-track" id="stripTrack"></div>
+      </div>
+
+      <!-- PRODUIT -->
+      <section class="section" id="produit">
+        <div class="section-label r">Ce qui est inclus</div>
+        <div class="features-split r delay-1">
+          <div class="feat-block">
+            <div class="feat-num">01</div>
+            <div class="feat-name">Facturation sans friction</div>
+            <div class="feat-desc">
+              PDF branded en 3 clics. Parce que plus vite tu envoies la facture,
+              plus vite tu es payé. Et plus elle est professionnelle, moins elle
+              est ignorée.
+            </div>
+          </div>
+          <div class="feat-block">
+            <div class="feat-num">02</div>
+            <div class="feat-name">Mini-compta URSSAF</div>
+            <div class="feat-desc">
+              Livre des recettes auto, calcul des charges, alerte plafond 77K€.
+              Tu sais exactement où tu en es. À tout moment. Sans Excel.
+            </div>
+          </div>
+          <div class="feat-block">
+            <div class="feat-num">03</div>
+            <div class="feat-name">Dashboard financier</div>
+            <div class="feat-desc">
+              CA réel vs projeté. Taux journalier. Saisonnalité. La vérité de ton
+              activité — pas la version rassurante que tu te racontes le soir.
+            </div>
+          </div>
+          <div class="feat-block">
+            <div class="feat-num">04</div>
+            <div class="feat-name">Legal Shield</div>
+            <div class="feat-desc">
+              Mise en demeure, injonction, CGV anti-retard — validés par avocat.
+              Le genre de protection que seules les grandes boîtes avaient.
+              Maintenant c'est pour toi.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDITORIAL QUOTE -->
+      <section class="quote-section r">
+        <div class="quote-label">Pourquoi Flexo</div>
+        <blockquote class="quote-text">
+          Le client ne paie pas parce qu'il sait que tu n'iras pas au tribunal
+          pour 1 500 €. <strong>Flexo lui prouve qu'il a tort.</strong>
+        </blockquote>
+      </section>
+
+      <!-- PRICING -->
+      <section class="section" id="tarifs">
+        <div class="section-label r">Tarifs</div>
+        <div class="pricing-wrap r delay-1">
+
+          <!-- FREE -->
+          <div class="p-card">
+            <div class="p-tier">Pour commencer</div>
+            <div class="p-name">Free</div>
+            <div class="p-price"><strong>0</strong> €/mois</div>
+            <ul class="p-list">
+              <li><span class="ck">✓</span> 3 factures / mois</li>
+              <li><span class="ck">✓</span> Relance J+8</li>
+              <li><span class="ck">✓</span> PDF watermarked</li>
+              <li class="off"><span class="ck">—</span> Mini-compta URSSAF</li>
+              <li class="off"><span class="ck">—</span> Escalade juridique</li>
+            </ul>
+            <button type="button" class="btn-line btn-card" data-scroll="waitlist">
+              Commencer gratuitement
+            </button>
+          </div>
+
+          <!-- PRO -->
+          <div class="p-card hot">
+            <div class="p-tier">Recommandé</div>
+            <div class="p-name">Pro</div>
+            <div class="p-price"><strong>29</strong> €/mois</div>
+            <ul class="p-list">
+              <li><span class="ck">✓</span> Factures illimitées</li>
+              <li><span class="ck">✓</span> 5 niveaux de relance auto</li>
+              <li><span class="ck">✓</span> Mini-compta URSSAF complète</li>
+              <li><span class="ck">✓</span> Dashboard avancé</li>
+              <li><span class="ck">✓</span> <strong>1 procédure Shield offerte / an</strong></li>
+            </ul>
+            <button type="button" class="btn-primary btn-card" data-scroll="waitlist">
+              Rejoindre la waitlist →
+            </button>
+          </div>
+
+          <!-- SHIELD ADD-ON -->
+          <div class="p-card p-card--addon">
+            <div class="p-tier">Add-on · À la demande</div>
+            <div class="p-name">Shield</div>
+            <div class="p-price"><strong>29</strong> €<span class="p-once"> / procédure</span></div>
+            <p class="p-addon-desc">
+              À activer en 1 clic sur n'importe quelle facture impayée, depuis ton dashboard Pro.
+            </p>
+            <ul class="p-list">
+              <li><span class="ck">✓</span> Mise en demeure auto (J+30)</li>
+              <li><span class="ck">✓</span> Dossier injonction de payer (J+45)</li>
+              <li><span class="ck">✓</span> Mise en relation huissier (J+60)</li>
+              <li><span class="ck">✓</span> Templates validés par avocat</li>
+            </ul>
+            <p class="p-addon-note">
+              ✦ 1 Shield offert avec le plan Pro chaque année
+            </p>
+          </div>
+
+          <!-- FONDATEUR -->
+          <div class="p-card p-card--founder">
+            <div class="p-tier">
+              ⚡ Plus que <span id="founderSpots">5</span>/20 places · Prix gelé à vie
+            </div>
+            <div class="p-name">Fondateur</div>
+            <div class="p-price">
+              <strong>9</strong> €<span class="p-once">/mois · à vie</span>
+            </div>
+            <ul class="p-list">
+              <li><span class="ck">✓</span> Plan Pro complet, à vie</li>
+              <li><span class="ck">✓</span> <strong>Shields illimités inclus</strong></li>
+              <li><span class="ck">✓</span> Prix gelé à 9€/mois pour toujours</li>
+              <li><span class="ck">✓</span> Accès bêta prioritaire — Avril 2026</li>
+              <li><span class="ck">🏅</span> Badge fondateur</li>
+            </ul>
+            <button type="button" class="btn-primary btn-card btn-founder" data-scroll="waitlist">
+              Je veux ma place →
+            </button>
+          </div>
+
+        </div>
+
+        <p class="pricing-note r delay-3">
+          Pas de CB demandée maintenant · Annulation en 1 clic · Lancement Avril 2026
+        </p>
+      </section>
+
+      <!-- CTA / WAITLIST -->
+      <section class="cta-wrap" id="waitlist">
+        <div class="cta-bg-img" aria-hidden="true"></div>
+        <div class="cta-inner">
+          <div class="cta-overline r">
+            20 places · 5 restantes · Prix fondateur à 9€/mois à vie
+          </div>
+          <h2 class="cta-heading r delay-1">
+            Fini<br />
+            <span class="light">de</span><br />
+            laisser.
+          </h2>
+          <form class="waitlist-form" id="waitlistForm" novalidate>
+            <div class="waitlist-row r delay-2">
               <input
                 type="email"
-                id="heroEmailInput"
+                id="emailInput"
                 placeholder="ton@email.fr"
                 autocomplete="email"
                 aria-label="Adresse e-mail"
               />
-              <button type="submit" class="btn-primary btn-fill">
-                Accès anticipé →
+              <button type="submit" class="btn-primary btn-submit">
+                Je veux être payé →
               </button>
             </div>
-            <p class="hero-wl-note">
-  Gratuit · Pas de spam ·
-  <strong><span id="heroCount">47</span> freelances inscrits · 5 places fondateur restantes</strong>
-</p>
-
-            <p
-              class="wl-success hero-wl-success"
-              id="heroWlSuccess"
-              role="status"
-            >
+            <p class="wl-note r delay-4">Gratuit · Pas de CB · Pas de spam</p>
+            <p class="wl-success" id="wlSuccess" role="status">
               ✓ Inscription confirmée — on te tient au courant.
             </p>
           </form>
-          <div class="hero-actions">
-            <button type="button" class="btn-line" data-scroll="escalade">
-              Voir comment ça marche
-            </button>
+          <div class="wl-avatars r delay-5">
+            <div class="avs" aria-hidden="true">
+              <div class="av" style="background:#3a3a3a">M</div>
+              <div class="av" style="background:#2a2a2a">S</div>
+              <div class="av" style="background:#333333">L</div>
+              <div class="av" style="background:#E85D3F; color:#fff">+</div>
+            </div>
+            <p class="wl-proof">
+              Déjà <strong>47 freelances</strong> sur la liste
+            </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- MARQUEE -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track" id="marqueeTrack"></div>
+      <!-- FOOTER -->
+      <footer>
+        <div class="footer-statement">
+          Ton travail<br />
+          <span class="light">a de la</span>
+          va<span class="coral">leur.</span>
+        </div>
+        <div class="footer-cols">
+          <div>
+            <div class="footer-brand">FL<span class="accent">X</span>O</div>
+            <p class="footer-tagline">
+              Le seul outil qui va au tribunal pour récupérer ton argent.<br />
+              Fait par un freelance, pour les freelances.
+            </p>
+          </div>
+          <div class="footer-col">
+            <h5>Produit</h5>
+            <ul>
+              <li><a href="#escalade">Recouvrement</a></li>
+              <li><a href="#produit">Fonctionnalités</a></li>
+              <li><a href="#tarifs">Tarifs</a></li>
+              <li><a href="#waitlist">Waitlist</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Contact</h5>
+            <ul>
+              <li><a href="mailto:contact@flexo.fr">contact@flexo.fr</a></li>
+              <li><a href="#" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="#" rel="noopener noreferrer">Twitter / X</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copy">© 2026 Flexo — Tous droits réservés</span>
+          <span class="footer-copy">Saint-Laurent-du-Var, France</span>
+          <span class="footer-copy">Fait avec 🖤 par un freelance</span>
+        </div>
+      </footer>
+
     </div>
-
-    <!-- INTRO EDITORIAL -->
-    <section class="intro-section r">
-      <p class="intro-text">
-        Le client qui ne répond plus. La facture qui traîne. La gêne qui
-        s'installe.<br />
-        Tu as fait le travail. Tu as livré. Tu mérites d'être payé.<br />
-        Mais au moment de relancer, tu hésites —
-        <em>peur de paraître agressif, de perdre le client, d'avoir l'air dans le
-          besoin.</em><br />
-        Le client le sait. Et il en profite.<br />
-        <strong>Flexo retire l'émotion de l'équation.</strong>
-        Ce n'est plus toi qui insistes. C'est un système.
-        <strong>Et les systèmes, on ne les ignore pas.</strong>
-      </p>
-      <div class="intro-byline">
-        Fait par un freelance qui en avait assez de laisser son argent sur la table
-      </div>
-    </section>
-
-    <!-- STATS -->
-    <section class="section r">
-      <div class="section-label">Le problème en chiffres</div>
-      <div class="stats-strip">
-        <div class="stat-block">
-          <div class="stat-big">6<span class="unit">k€</span></div>
-          <div class="stat-sub">
-            perdus en moyenne par an — non pas faute d'avoir travaillé, mais
-            faute d'avoir osé insister
-          </div>
-        </div>
-        <div class="stat-block">
-          <div class="stat-big">73<span class="unit">%</span></div>
-          <div class="stat-sub">
-            des freelances abandonnent leurs impayés sous 500 € parce que la
-            procédure leur semble trop complexe
-          </div>
-        </div>
-        <div class="stat-block">
-          <div class="stat-big">0<span class="unit">€</span></div>
-          <div class="stat-sub">
-            c'est ce que coûte à un client de ne pas te payer — si tu n'as pas
-            de système derrière toi
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ESCALADE -->
-    <section class="section" id="escalade">
-      <div class="escalade-heading r">
-        <div>
-          <div class="section-label">Chaîne d'escalade</div>
-          <div class="esc-big-title">
-            Cin<span class="light">q</span><br />
-            ni<span class="light">veaux.</span><br />
-            <span class="coral">Zéro</span><br />
-            hésitation.
-          </div>
-        </div>
-        <p class="esc-intro-copy r delay-1">
-          Avant Flexo, chaque relance était une décision émotionnelle.
-          Maintenant c'est un système. Automatique. Documenté. Juridiquement
-          validé. Le client sait que derrière toi, il y a une mécanique qu'il ne
-          peut pas ignorer.
-        </p>
-      </div>
-
-      <div class="esc-rows r delay-2">
-        <div class="esc-row">
-          <div class="esc-timing">J + 0</div>
-          <div class="esc-index">01.</div>
-          <div>
-            <div class="esc-name">Facture envoyée</div>
-            <div class="esc-desc">
-              PDF professionnel généré en un clic. Le client reçoit quelque
-              chose de sérieux. Le ton est donné dès le départ.
-            </div>
-          </div>
-          <span class="esc-pill pill-a">Auto</span>
-        </div>
-        <div class="esc-row">
-          <div class="esc-timing">J−3 → J+8</div>
-          <div class="esc-index">02.</div>
-          <div>
-            <div class="esc-name">Relances progressives</div>
-            <div class="esc-desc">
-              Rappel amical → relance ferme → ultimatum. Calibrées. Espacées.
-              Jamais agressives, jamais ignorables.
-            </div>
-          </div>
-          <span class="esc-pill pill-a">Auto</span>
-        </div>
-        <div class="esc-row">
-          <div class="esc-timing">J + 30</div>
-          <div class="esc-index">03.</div>
-          <div>
-            <div class="esc-name">Mise en demeure</div>
-            <div class="esc-desc">
-              Lettre officielle validée par avocat. Pénalités légales
-              automatiques. Le client comprend que ce n'est plus toi. C'est la loi.
-            </div>
-          </div>
-          <span class="esc-pill pill-j">Juridique</span>
-        </div>
-        <div class="esc-row">
-          <div class="esc-timing">J + 45</div>
-          <div class="esc-index">04.</div>
-          <div>
-            <div class="esc-name">Dossier injonction de payer</div>
-            <div class="esc-desc">
-              Cerfa pré-rempli, prêt à déposer. La plupart des clients paient
-              ici. Parce qu'ils réalisent que tu iras jusqu'au bout.
-            </div>
-          </div>
-          <span class="esc-pill pill-t">Tribunal</span>
-        </div>
-        <div class="esc-row">
-          <div class="esc-timing">J + 60</div>
-          <div class="esc-index">05.</div>
-          <div>
-            <div class="esc-name">Huissier de justice</div>
-            <div class="esc-desc">
-              Exécution forcée si nécessaire. Parce qu'on avait dit qu'on irait
-              jusqu'au bout. On y va.
-            </div>
-          </div>
-          <span class="esc-pill pill-t">Exécution</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- PHOTO STRIP -->
-    <div class="photo-strip r" aria-hidden="true">
-      <div class="strip-label">Ce que Flexo surveille pour toi</div>
-      <div class="strip-track" id="stripTrack"></div>
-    </div>
-
-    <!-- PRODUIT -->
-    <section class="section" id="produit">
-      <div class="section-label r">Ce qui est inclus</div>
-      <div class="features-split r delay-1">
-        <div class="feat-block">
-          <div class="feat-num">01</div>
-          <div class="feat-name">Facturation sans friction</div>
-          <div class="feat-desc">
-            PDF branded en 3 clics. Parce que plus vite tu envoies la facture,
-            plus vite tu es payé. Et plus elle est professionnelle, moins elle
-            est ignorée.
-          </div>
-        </div>
-        <div class="feat-block">
-          <div class="feat-num">02</div>
-          <div class="feat-name">Mini-compta URSSAF</div>
-          <div class="feat-desc">
-            Livre des recettes auto, calcul des charges, alerte plafond 77K€.
-            Tu sais exactement où tu en es. À tout moment. Sans Excel.
-          </div>
-        </div>
-        <div class="feat-block">
-          <div class="feat-num">03</div>
-          <div class="feat-name">Dashboard financier</div>
-          <div class="feat-desc">
-            CA réel vs projeté. Taux journalier. Saisonnalité. La vérité de ton
-            activité — pas la version rassurante que tu te racontes le soir.
-          </div>
-        </div>
-        <div class="feat-block">
-          <div class="feat-num">04</div>
-          <div class="feat-name">Legal Shield</div>
-          <div class="feat-desc">
-            Mise en demeure, injonction, CGV anti-retard — validés par avocat.
-            Le genre de protection que seules les grandes boîtes avaient.
-            Maintenant c'est pour toi.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EDITORIAL QUOTE -->
-    <section class="quote-section r">
-      <div class="quote-label">Pourquoi Flexo</div>
-      <blockquote class="quote-text">
-        Le client ne paie pas parce qu'il sait que tu n'iras pas au tribunal
-        pour 1 500 €. <strong>Flexo lui prouve qu'il a tort.</strong>
-      </blockquote>
-    </section>
-
-    <!-- PRICING -->
-    <section class="section" id="tarifs">
-      <div class="section-label r">Tarifs</div>
-      <div class="pricing-wrap r delay-1">
-
-        <!-- FREE -->
-        <div class="p-card">
-          <div class="p-tier">Pour commencer</div>
-          <div class="p-name">Free</div>
-          <div class="p-price"><strong>0</strong> €/mois</div>
-          <ul class="p-list">
-            <li><span class="ck">✓</span> 3 factures / mois</li>
-            <li><span class="ck">✓</span> Relance J+8</li>
-            <li><span class="ck">✓</span> PDF watermarked</li>
-            <li class="off"><span class="ck">—</span> Mini-compta URSSAF</li>
-            <li class="off"><span class="ck">—</span> Escalade juridique</li>
-          </ul>
-          <button type="button" class="btn-line btn-card" data-scroll="waitlist">
-            Commencer gratuitement
-          </button>
-        </div>
-
-        <!-- PRO -->
-        <div class="p-card hot">
-          <div class="p-tier">Recommandé</div>
-          <div class="p-name">Pro</div>
-          <div class="p-price"><strong>29</strong> €/mois</div>
-          <ul class="p-list">
-            <li><span class="ck">✓</span> Factures illimitées</li>
-            <li><span class="ck">✓</span> 5 niveaux de relance auto</li>
-            <li><span class="ck">✓</span> Mini-compta URSSAF complète</li>
-            <li><span class="ck">✓</span> Dashboard avancé</li>
-            <li><span class="ck">✓</span> <strong>1 procédure Shield offerte / an</strong></li>
-          </ul>
-          <button type="button" class="btn-primary btn-card" data-scroll="waitlist">
-            Rejoindre la waitlist →
-          </button>
-        </div>
-
-        <!-- SHIELD ADD-ON -->
-        <div class="p-card p-card--addon">
-          <div class="p-tier">Add-on · À la demande</div>
-          <div class="p-name">Shield</div>
-          <div class="p-price"><strong>29</strong> €<span class="p-once"> / procédure</span></div>
-          <p class="p-addon-desc">
-            À activer en 1 clic sur n'importe quelle facture impayée, depuis ton dashboard Pro.
-          </p>
-          <ul class="p-list">
-            <li><span class="ck">✓</span> Mise en demeure auto (J+30)</li>
-            <li><span class="ck">✓</span> Dossier injonction de payer (J+45)</li>
-            <li><span class="ck">✓</span> Mise en relation huissier (J+60)</li>
-            <li><span class="ck">✓</span> Templates validés par avocat</li>
-          </ul>
-          <p class="p-addon-note">
-            ✦ 1 Shield offert avec le plan Pro chaque année
-          </p>
-        </div>
-
-        <!-- FONDATEUR -->
-<div class="p-card p-card--founder">
-  <div class="p-tier">
-    ⚡ Plus que <span id="founderSpots">5</span>/20 places · Prix gelé à vie
-  </div>
-  <div class="p-name">Fondateur</div>
-  <div class="p-price">
-    <strong>9</strong> €<span class="p-once">/mois · à vie</span>
-  </div>
-  <ul class="p-list">
-    <li><span class="ck">✓</span> Plan Pro complet, à vie</li>
-    <li><span class="ck">✓</span> <strong>Shields illimités inclus</strong></li>
-    <li><span class="ck">✓</span> Prix gelé à 9€/mois pour toujours</li>
-    <li><span class="ck">✓</span> Accès bêta prioritaire — Avril 2026</li>
-    <li><span class="ck">🏅</span> Badge fondateur</li>
-  </ul>
-  <button type="button" class="btn-primary btn-card btn-founder" data-scroll="waitlist">
-    Je veux ma place →
-  </button>
-</div>
-
-
-      </div>
-
-      <!-- PRICING REASSURANCE -->
-      <p class="pricing-note r delay-3">
-        Pas de CB demandée maintenant · Annulation en 1 clic · Lancement Avril 2026
-      </p>
-    </section>
-
-    <!-- CTA / WAITLIST -->
-    <section class="cta-wrap" id="waitlist">
-      <div class="cta-bg-img" aria-hidden="true"></div>
-      <div class="cta-inner">
-        <div class="cta-overline r">
-  20 places · 5 restantes · Prix fondateur à 9€/mois à vie
-</div>
-        <h2 class="cta-heading r delay-1">
-          Fini<br />
-          <span class="light">de</span><br />
-          laisser.
-        </h2>
-        <form class="waitlist-form" id="waitlistForm" novalidate>
-          <div class="waitlist-row r delay-2">
-            <input
-              type="email"
-              id="emailInput"
-              placeholder="ton@email.fr"
-              autocomplete="email"
-              aria-label="Adresse e-mail"
-            />
-            <button type="submit" class="btn-primary btn-submit">
-              Je veux être payé →
-            </button>
-          </div>
-          <p class="wl-note r delay-4">Gratuit · Pas de CB · Pas de spam</p>
-          <p class="wl-success" id="wlSuccess" role="status">
-            ✓ Inscription confirmée — on te tient au courant.
-          </p>
-        </form>
-        <div class="wl-avatars r delay-5">
-          <div class="avs" aria-hidden="true">
-            <div class="av" style="background:#3a3a3a">M</div>
-            <div class="av" style="background:#2a2a2a">S</div>
-            <div class="av" style="background:#333333">L</div>
-            <div class="av" style="background:#E85D3F; color:#fff">+</div>
-          </div>
-          <p class="wl-proof">
-            Déjà <strong>47 freelances</strong> sur la liste
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-      <div class="footer-statement">
-        Ton travail<br />
-        <span class="light">a de la</span>
-        va<span class="coral">leur.</span>
-      </div>
-      <div class="footer-cols">
-        <div>
-          <div class="footer-brand">FL<span class="accent">X</span>O</div>
-          <p class="footer-tagline">
-            Le seul outil qui va au tribunal pour récupérer ton argent.<br />
-            Fait par un freelance, pour les freelances.
-          </p>
-        </div>
-        <div class="footer-col">
-          <h5>Produit</h5>
-          <ul>
-            <li><a href="#escalade">Recouvrement</a></li>
-            <li><a href="#produit">Fonctionnalités</a></li>
-            <li><a href="#tarifs">Tarifs</a></li>
-            <li><a href="#waitlist">Waitlist</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h5>Contact</h5>
-          <ul>
-            <li><a href="mailto:yvan.trouillet@gmail.com">contact@flexo.fr</a></li>
-            <li><a href="#" rel="noopener noreferrer">LinkedIn</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span class="footer-copy">© 2026 Flexo — Tous droits réservés</span>
-        <span class="footer-copy">Paris, France</span>
-        <span class="footer-copy">Fait avec 🖤 par un freelance</span>
-      </div>
-    </footer>
+    <!-- FIN SKEW WRAPPER -->
 
     <script src="main.js"></script>
   </body>
