@@ -193,17 +193,17 @@
   ══════════════════════════════════════ */
   // ← AJOUTÉ — simule une réduction progressive des places disponibles
   const founderSpotsEls = document.querySelectorAll("#founderSpots");
-  let spots = 5; // ← 5 places restantes sur 20
+  let spots = 47;
 
-function tickSpots() {
-  const delay = 90000 + Math.random() * 180000; // ← plus lent — 1,5 à 4,5 min — crédible sur 20 places
-  setTimeout(() => {
-    if (spots <= 1) return;
-    spots--;
-    founderSpotsEls.forEach((el) => (el.textContent = spots));
-    tickSpots();
-  }, delay);
-}
+  function tickSpots() {
+    const delay = 45000 + Math.random() * 90000; // toutes les 45-135 secondes
+    setTimeout(() => {
+      if (spots <= 1) return;
+      spots--;
+      founderSpotsEls.forEach((el) => (el.textContent = spots));
+      tickSpots();
+    }, delay);
+  }
   tickSpots();
 
   /* ══════════════════════════════════════
@@ -317,72 +317,5 @@ function tickSpots() {
       originalBtnText: "Je veux être payé →", // ← MODIFIÉ — texte correct
     });
   });
-  
-  /* ══════════════════════════════════════
-   SCROLL ARC — skew directionnel sur wrapper
-══════════════════════════════════════ */
-(function initScrollArc() {
-
-  // Désactive sur mobile
-  if (window.innerWidth <= 900) return;
-
-  const wrapper = document.getElementById("skew-wrapper");
-  if (!wrapper) return;
-
-  // ── Paramètres ──────────────────────────
-  const MAX_SKEW    = 8;     // degrés max — commence à 8, monte jusqu'à 15 si tu veux plus
-  const LERP_IN     = 0.1;   // vitesse d'entrée dans l'effet
-  const LERP_OUT    = 0.06;  // vitesse de retour à 0 — plus lent = traîne plus longtemps
-  const DAMPING     = 10;    // sensibilité — 6 = très réactif, 15 = nécessite un scroll fort
-  // ────────────────────────────────────────
-
-  let lastY       = window.scrollY;
-  let currentSkew = 0;
-  let targetSkew  = 0;
-  let rafId       = null;
-
-  function lerp(a, b, t) { return a + (b - a) * t; }
-  function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
-
-  window.addEventListener("scroll", () => {
-    const y   = window.scrollY;
-    const vel = y - lastY;
-    lastY     = y;
-
-    // Scroll bas → skew négatif (incline vers l'avant)
-    // Scroll haut → skew positif (incline vers l'arrière)
-    targetSkew = clamp(-vel / DAMPING, -MAX_SKEW, MAX_SKEW);
-
-    if (!rafId) rafId = requestAnimationFrame(tick);
-  }, { passive: true });
-
-  function tick() {
-    // Entrée rapide, retour lent — effet "élastique"
-    const lerpSpeed = Math.abs(targetSkew) > Math.abs(currentSkew)
-      ? LERP_IN
-      : LERP_OUT;
-
-    currentSkew = lerp(currentSkew, targetSkew, lerpSpeed);
-    targetSkew  = lerp(targetSkew, 0, LERP_OUT);
-
-    if (Math.abs(currentSkew) < 0.005) {
-      // Réinitialise proprement
-      wrapper.style.transform = "";
-      rafId = null;
-      return;
-    }
-
-    // skewY = déformation diagonale visible immédiatement
-    // scaleY = légère compression qui renforce l'impression de vitesse
-    const absSkew = Math.abs(currentSkew);
-    const scaleY  = 1 - absSkew * 0.004;
-
-    wrapper.style.transform =
-      `skewY(${currentSkew.toFixed(4)}deg) scaleY(${scaleY.toFixed(5)})`;
-
-    rafId = requestAnimationFrame(tick);
-  }
-
-})();
 
 })();
