@@ -6,12 +6,13 @@
     <title>Flexo — Reprends ton argent</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,200;0,300;0,400;0,500;0,700;0,800;0,900;1,200;1,300;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+
     <!-- PRELOADER -->
     <div
       id="preloader"
@@ -45,7 +46,7 @@
           class="btn-primary nav-btn"
           data-scroll="waitlist"
         >
-          Accès gratuit →
+          Accès anticipé →
         </button>
       </div>
     </nav>
@@ -57,7 +58,7 @@
       <div class="hero-meta" aria-hidden="true">
         <div class="hero-meta-item">Waitlist ouverte</div>
         <div class="hero-meta-line"></div>
-        <div class="hero-meta-item">Lancement Q3 2026</div>
+        <div class="hero-meta-item">Lancement Avril 2026</div>
       </div>
 
       <div class="hero-content">
@@ -94,7 +95,8 @@
               </button>
             </div>
             <p class="hero-wl-note">
-              Gratuit · Pas de spam · 47 freelances inscrits
+              Gratuit · Pas de spam ·
+              <strong><span id="heroCount">47</span> freelances inscrits</strong>
             </p>
             <p
               class="wl-success hero-wl-success"
@@ -125,18 +127,15 @@
         s'installe.<br />
         Tu as fait le travail. Tu as livré. Tu mérites d'être payé.<br />
         Mais au moment de relancer, tu hésites —
-        <em
-          >peur de paraître agressif, de perdre le client, d'avoir l'air dans le
-          besoin.</em
-        ><br />
+        <em>peur de paraître agressif, de perdre le client, d'avoir l'air dans le
+          besoin.</em><br />
         Le client le sait. Et il en profite.<br />
         <strong>Flexo retire l'émotion de l'équation.</strong>
         Ce n'est plus toi qui insistes. C'est un système.
         <strong>Et les systèmes, on ne les ignore pas.</strong>
       </p>
       <div class="intro-byline">
-        Fait par un freelance qui en avait assez de laisser son argent sur la
-        table
+        Fait par un freelance qui en avait assez de laisser son argent sur la table
       </div>
     </section>
 
@@ -220,8 +219,7 @@
             <div class="esc-name">Mise en demeure</div>
             <div class="esc-desc">
               Lettre officielle validée par avocat. Pénalités légales
-              automatiques. Le client comprend que ce n'est plus toi. C'est la
-              loi.
+              automatiques. Le client comprend que ce n'est plus toi. C'est la loi.
             </div>
           </div>
           <span class="esc-pill pill-j">Juridique</span>
@@ -276,8 +274,8 @@
           <div class="feat-num">02</div>
           <div class="feat-name">Mini-compta URSSAF</div>
           <div class="feat-desc">
-            Livre des recettes auto, calcul des charges, alerte plafond 77K€. Tu
-            sais exactement où tu en es. À tout moment. Sans Excel.
+            Livre des recettes auto, calcul des charges, alerte plafond 77K€.
+            Tu sais exactement où tu en es. À tout moment. Sans Excel.
           </div>
         </div>
         <div class="feat-block">
@@ -313,42 +311,61 @@
     <section class="section" id="tarifs">
       <div class="section-label r">Tarifs</div>
       <div class="pricing-wrap r delay-1">
+
+        <!-- FREE -->
         <div class="p-card">
-          <div class="p-tier">Gratuit</div>
+          <div class="p-tier">Pour commencer</div>
           <div class="p-name">Free</div>
           <div class="p-price"><strong>0</strong> €/mois</div>
           <ul class="p-list">
             <li><span class="ck">✓</span> 3 factures / mois</li>
             <li><span class="ck">✓</span> Relance J+8</li>
             <li><span class="ck">✓</span> PDF watermarked</li>
-            <li class="off"><span class="ck">—</span> Mise en demeure</li>
-            <li class="off"><span class="ck">—</span> Injonction de payer</li>
+            <li class="off"><span class="ck">—</span> Mini-compta URSSAF</li>
+            <li class="off"><span class="ck">—</span> Escalade juridique</li>
           </ul>
+          <button type="button" class="btn-line btn-card" data-scroll="waitlist">
+            Commencer gratuitement
+          </button>
         </div>
+
+        <!-- PRO -->
         <div class="p-card hot">
           <div class="p-tier">Recommandé</div>
           <div class="p-name">Pro</div>
-          <div class="p-price"><strong>19</strong> €/mois</div>
+          <div class="p-price"><strong>29</strong> €/mois</div>
           <ul class="p-list">
             <li><span class="ck">✓</span> Factures illimitées</li>
-            <li><span class="ck">✓</span> 5 niveaux de relance</li>
-            <li><span class="ck">✓</span> Mini-compta URSSAF</li>
+            <li><span class="ck">✓</span> 5 niveaux de relance auto</li>
+            <li><span class="ck">✓</span> Mini-compta URSSAF complète</li>
             <li><span class="ck">✓</span> Dashboard avancé</li>
-            <li class="off"><span class="ck">—</span> Escalade juridique</li>
+            <li><span class="ck">✓</span> <strong>1 procédure Shield offerte / an</strong></li>
           </ul>
+          <button type="button" class="btn-primary btn-card" data-scroll="waitlist">
+            Rejoindre la waitlist →
+          </button>
         </div>
-        <div class="p-card">
-          <div class="p-tier">Complet</div>
+
+        <!-- SHIELD ADD-ON -->
+        <div class="p-card p-card--addon">
+          <div class="p-tier">Add-on · À la demande</div>
           <div class="p-name">Shield</div>
-          <div class="p-price"><strong>35</strong> €/mois</div>
+          <div class="p-price"><strong>29</strong> €<span class="p-once"> / procédure</span></div>
+          <p class="p-addon-desc">
+            À activer en 1 clic sur n'importe quelle facture impayée, depuis ton dashboard Pro.
+          </p>
           <ul class="p-list">
-            <li><span class="ck">✓</span> Tout Pro</li>
-            <li><span class="ck">✓</span> Mise en demeure auto</li>
-            <li><span class="ck">✓</span> Dossier injonction</li>
-            <li><span class="ck">✓</span> Huissier de justice</li>
-            <li><span class="ck">✓</span> Templates validés avocat</li>
+            <li><span class="ck">✓</span> Mise en demeure auto (J+30)</li>
+            <li><span class="ck">✓</span> Dossier injonction de payer (J+45)</li>
+            <li><span class="ck">✓</span> Mise en relation huissier (J+60)</li>
+            <li><span class="ck">✓</span> Templates validés par avocat</li>
           </ul>
+          <p class="p-addon-note">
+            ✦ 1 Shield offert avec le plan Pro chaque année
+          </p>
         </div>
+
+        <!-- FONDATEUR -->
         <div class="p-card p-card--founder">
           <div class="p-tier">
             ⚡ <span id="founderSpots">47</span>/50 places · Prix gelé à vie
@@ -356,14 +373,23 @@
           <div class="p-name">Fondateur</div>
           <div class="p-price"><strong>149</strong> €/an</div>
           <ul class="p-list">
-            <li><span class="ck">✓</span> Tout Shield, à vie</li>
+            <li><span class="ck">✓</span> Plan Pro complet, à vie</li>
+            <li><span class="ck">✓</span> Shields illimités inclus</li>
             <li><span class="ck">✓</span> Prix gelé à vie</li>
-            <li><span class="ck">✓</span> Accès bêta prioritaire</li>
-            <li><span class="ck">✓</span> Influence roadmap</li>
+            <li><span class="ck">✓</span> Accès bêta prioritaire — Avril 2026</li>
             <li><span class="ck">🏅</span> Badge fondateur</li>
           </ul>
+          <button type="button" class="btn-primary btn-card btn-founder" data-scroll="waitlist">
+            Je veux ma place →
+          </button>
         </div>
+
       </div>
+
+      <!-- PRICING REASSURANCE -->
+      <p class="pricing-note r delay-3">
+        Pas de CB demandée maintenant · Annulation en 1 clic · Lancement Avril 2026
+      </p>
     </section>
 
     <!-- CTA / WAITLIST -->
@@ -374,7 +400,7 @@
           50 places · Accès fondateur · Prix gelé à vie
         </div>
         <h2 class="cta-heading r delay-1">
-          Fini
+          Fini<br />
           <span class="light">de</span><br />
           laisser.
         </h2>
@@ -398,10 +424,10 @@
         </form>
         <div class="wl-avatars r delay-5">
           <div class="avs" aria-hidden="true">
-            <div class="av" style="background: #a8b8e8">M</div>
-            <div class="av" style="background: #a8d8b8">S</div>
-            <div class="av" style="background: #e8c0a0">L</div>
-            <div class="av" style="background: #d4a8d0">+</div>
+            <div class="av" style="background:#3a3a3a">M</div>
+            <div class="av" style="background:#2a2a2a">S</div>
+            <div class="av" style="background:#333333">L</div>
+            <div class="av" style="background:#E85D3F; color:#fff">+</div>
           </div>
           <p class="wl-proof">
             Déjà <strong>47 freelances</strong> sur la liste
@@ -419,10 +445,10 @@
       </div>
       <div class="footer-cols">
         <div>
-          <div class="footer-brand">FL<span>X</span>O</div>
+          <div class="footer-brand">FL<span class="accent">X</span>O</div>
           <p class="footer-tagline">
-            Le seul outil qui va au tribunal pour récupérer ton argent. Fait par
-            un freelance, pour les freelances.
+            Le seul outil qui va au tribunal pour récupérer ton argent.<br />
+            Fait par un freelance, pour les freelances.
           </p>
         </div>
         <div class="footer-col">
@@ -445,7 +471,7 @@
       </div>
       <div class="footer-bottom">
         <span class="footer-copy">© 2026 Flexo — Tous droits réservés</span>
-        <span class="footer-copy">Paris, France</span>
+        <span class="footer-copy">Saint-Laurent-du-Var, France</span>
         <span class="footer-copy">Fait avec 🖤 par un freelance</span>
       </div>
     </footer>
