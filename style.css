@@ -1402,7 +1402,7 @@ nav,
 }
 
 /* Désactive l'effet sur mobile — trop lourd et peu lisible */
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
   .hero,
   .marquee,
   .intro-section,
@@ -1413,6 +1413,6 @@ nav,
   footer {
     will-change: auto;
     transform: none !important;
-  }
+  }*/
 }
 
