@@ -317,5 +317,61 @@ function tickSpots() {
       originalBtnText: "Je veux être payé →", // ← MODIFIÉ — texte correct
     });
   });
+  
+  /* ══════════════════════════════════════
+   SCROLL SKEW — effet de vitesse
+══════════════════════════════════════ */
+(function initScrollSkew() {
+  let lastY      = window.scrollY;
+  let currentSkew = 0;
+  let targetSkew  = 0;
+  let rafId       = null;
+
+  const MAX_SKEW  = 6;   // degrés max — augmente pour plus d'intensité
+  const LERP      = 0.08; // vitesse de retour — 0.05 = lent, 0.12 = rapide
+  const DAMPING   = 12;   // diviseur de vitesse — plus grand = effet plus subtil
+
+  // Éléments à distordre — tout sauf nav et preloader
+  const skewTarget = document.body;
+
+  function lerp(a, b, t) {
+    return a + (b - a) * t;
+  }
+
+  function onScroll() {
+    const currentY = window.scrollY;
+    const delta    = currentY - lastY;
+    lastY          = currentY;
+
+    // Cible proportionnelle à la vitesse de scroll
+    targetSkew = Math.max(-MAX_SKEW, Math.min(MAX_SKEW, delta / DAMPING)) * -1;
+  }
+
+  function tick() {
+    currentSkew = lerp(currentSkew, targetSkew, LERP);
+    targetSkew  = lerp(targetSkew, 0, LERP);
+
+    // Applique le skew + légère compression verticale pour l'effet vitesse
+    const abs     = Math.abs(currentSkew);
+    const scaleY  = 1 - abs * 0.002; // compression subtile
+
+    skewTarget.style.transform = `skewY(${currentSkew.toFixed(4)}deg) scaleY(${scaleY.toFixed(4)})`;
+    skewTarget.style.transformOrigin = "center center";
+
+    // Continue seulement si encore en mouvement
+    if (Math.abs(currentSkew) > 0.01 || Math.abs(targetSkew) > 0.01) {
+      rafId = requestAnimationFrame(tick);
+    } else {
+      skewTarget.style.transform = "";
+      rafId = null;
+    }
+  }
+
+  window.addEventListener("scroll", () => {
+    onScroll();
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  }, { passive: true });
+})();
+
 
 })();
