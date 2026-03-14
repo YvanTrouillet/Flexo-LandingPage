@@ -1374,20 +1374,45 @@ footer {
 }
 
 /* ══════════════════════════════════════
-   SCROLL SKEW — performance
+   SCROLL ARC — performance & base
 ══════════════════════════════════════ */
-body {
-  will-change: transform; /* ← Hint GPU pour éviter les repaints */
-}
 
-/* Fixe la nav pendant le skew — elle ne doit pas se tordre */
-nav {
+/* Sections ciblées par l'effet */
+.hero,
+.marquee,
+.intro-section,
+.section,
+.quote-section,
+.photo-strip,
+.cta-wrap,
+footer {
   will-change: transform;
-  transform: none !important; /* ← Écrase le skew du body sur la nav */
+  backface-visibility: hidden;
+  transform-origin: center center;
+  /* Évite les pixels qui "sautent" aux bords pendant la déformation */
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Le preloader non plus */
+/* La nav et le preloader ne doivent jamais être déformés */
+nav,
 #preloader {
+  will-change: auto;
   transform: none !important;
+  z-index: 9000;
+}
+
+/* Désactive l'effet sur mobile — trop lourd et peu lisible */
+@media (max-width: 900px) {
+  .hero,
+  .marquee,
+  .intro-section,
+  .section,
+  .quote-section,
+  .photo-strip,
+  .cta-wrap,
+  footer {
+    will-change: auto;
+    transform: none !important;
+  }
 }
 
